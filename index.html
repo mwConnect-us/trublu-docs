@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TruBlu™ X-Series Thermostat — Installation Manual | mwConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-red:   #9B3020;
+      --warm-red:   #DF5433;
+      --near-black: #111111;
+      --charcoal:   #333333;
+      --mid-gray:   #666666;
+      --light-gray: #F2F2F2;
+      --white:      #FFFFFF;
+      --border:     #e0e0e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--charcoal);
+      background: var(--white);
+    }
+
+    /* ─── Site Header ───────────────────────────────────────────── */
+    .site-header {
+      background: var(--white);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .site-header .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .header-nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-decoration: none;
+      padding: 0 8px;
+    }
+    .header-nav a:hover { color: var(--warm-red); }
+    .header-badge {
+      background: var(--light-gray);
+      color: var(--dark-red);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── Hero Banner ───────────────────────────────────────────── */
+    .doc-hero {
+      background: linear-gradient(135deg, var(--dark-red) 0%, var(--warm-red) 100%);
+      color: white;
+      padding: 48px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+    .doc-hero h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .doc-hero .subtitle {
+      font-size: 15px;
+      opacity: 0.85;
+      font-weight: 300;
+    }
+    .doc-hero .meta {
+      margin-top: 14px;
+      font-size: 12px;
+      opacity: 0.65;
+    }
+    .hero-image {
+      max-width: 150px;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+    }
+
+    /* ─── Layout ────────────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 0;
+    }
+
+    /* ─── Sidebar / TOC ─────────────────────────────────────────── */
+    .toc-sidebar {
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      background: var(--light-gray);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .toc-sidebar h2 {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--mid-gray);
+      padding: 0 20px 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .toc-sidebar nav a {
+      display: block;
+      padding: 7px 20px;
+      font-size: 13px;
+      color: var(--charcoal);
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .toc-sidebar nav a:hover {
+      background: white;
+      border-left-color: var(--warm-red);
+      color: var(--dark-red);
+    }
+    .toc-sidebar nav a.active {
+      background: white;
+      border-left-color: var(--dark-red);
+      color: var(--dark-red);
+      font-weight: 500;
+    }
+
+    /* ─── Main Content ──────────────────────────────────────────── */
+    .main-content {
+      padding: 48px 56px;
+      max-width: 840px;
+    }
+
+    /* ─── Sections ──────────────────────────────────────────────── */
+    .section { margin-bottom: 60px; scroll-margin-top: 80px; }
+
+    .section h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--dark-red);
+      border-bottom: 2px solid var(--warm-red);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    .section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 24px 0 10px;
+    }
+    .section p { margin-bottom: 14px; }
+    .section ul, .section ol { margin: 10px 0 14px 24px; }
+    .section li { margin-bottom: 6px; }
+    .section ol li { padding-left: 4px; }
+
+    /* ─── Callout Boxes ─────────────────────────────────────────── */
+    .callout {
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 14px;
+      display: flex;
+      gap: 10px;
+    }
+    .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+    .callout.warning  { background: #fff3cd; border-left: 4px solid #f0a500; color: #664d03; }
+    .callout.tip      { background: #e8f5e9; border-left: 4px solid #43a047; color: #1b5e20; }
+    .callout.note     { background: #e3f2fd; border-left: 4px solid #1976d2; color: #0d47a1; }
+    .callout.danger   { background: #ffebee; border-left: 4px solid #d32f2f; color: #7f0000; }
+
+    /* ─── Diagrams ──────────────────────────────────────────────── */
+    .diagram-wrap {
+      margin: 24px 0;
+      text-align: center;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+    .diagram-wrap img { max-width: 100%; height: auto; }
+    .diagram-caption {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--mid-gray);
+      font-style: italic;
+    }
+
+    /* ─── Terminal Reference Table ──────────────────────────────── */
+    .terminal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+    .terminal-table th {
+      background: var(--dark-red);
+      color: white;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .terminal-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .terminal-table tr:nth-child(even) td { background: var(--light-gray); }
+    .terminal-id {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark-red);
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    .site-footer {
+      background: var(--near-black);
+      color: #aaa;
+      padding: 40px 40px 24px;
+      font-size: 13px;
+      margin-top: 60px;
+    }
+    .site-footer .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .footer-logo img { height: 32px; width: auto; opacity: 0.8; }
+    .site-footer h4 {
+      color: white;
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .site-footer a { color: #aaa; text-decoration: none; display: block; margin-bottom: 5px; }
+    .site-footer a:hover { color: var(--warm-red); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 28px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #555;
+    }
+    .footer-bottom .mwc { color: var(--warm-red); font-weight: 600; }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc-sidebar { position: static; height: auto; }
+      .main-content { padding: 24px 20px; }
+      .doc-hero { grid-template-columns: 1fr; }
+      .hero-image { display: none; }
+      .site-footer .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .site-header { padding: 0 20px; }
+      .header-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SITE HEADER ────────────────────────────────────────────── -->
+<header class="site-header">
+  <a href="https://mwconnect.us" class="logo">
+    <img src="images/logo.png" alt="mwConnect" />
+  </a>
+  <div class="header-right">
+    <nav class="header-nav">
+      <a href="https://mwconnect.us/solutions/trublu-mesh/">TruBlu&#8482; Mesh</a>
+      <a href="https://mwconnect.us/contact">Contact</a>
+    </nav>
+    <span class="header-badge">HVAC Partner Documentation</span>
+  </div>
+</header>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<div class="doc-hero">
+  <div>
+    <h1>X-Series Thermostat<br>Installation Manual</h1>
+    <p class="subtitle">TruBlu&#8482; Mesh Integration &#8212; NetX X-Series (model 240273)</p>
+    <p class="meta">mwConnect Partner Documentation &nbsp;&middot;&nbsp; Powered by NetX&#8482; X-Series Platform</p>
+  </div>
+  <img src="images/240273-01-X-Series-Thermostat-1.svg" alt="X-Series Thermostat" class="hero-image" />
+</div>
+
+<!-- ── LAYOUT ─────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc-sidebar">
+    <h2>Table of Contents</h2>
+    <nav id="toc-nav">
+      <a href="#before-you-start">Before You Start</a>
+      <a href="#introduction">Introduction</a>
+      <a href="#core-features">Core Features</a>
+      <a href="#whats-in-the-box">What Is In The Box</a>
+      <a href="#bacnet-modbus">BACnet &amp; Modbus Protocols</a>
+      <a href="#callout">Thermostat Callout</a>
+      <a href="#location">Thermostat Location</a>
+      <a href="#mount-backplate">Mount Thermostat Backplate</a>
+      <a href="#thermostat-setup">Thermostat Setup</a>
+      <a href="#user-menu">User Menu Settings</a>
+      <a href="#installer-menu">Installer Menu Settings</a>
+      <a href="#temp-override">Temperature Override</a>
+      <a href="#additional-settings">Additional Settings &amp; Features</a>
+      <a href="#remote-sensors">Remote Sensors</a>
+      <a href="#programming">Programming The Thermostat</a>
+      <a href="#wiring">Wiring Diagrams</a>
+      <a href="#independent-power">Independent Power Source</a>
+      <a href="#wiring-chart">Wiring Cross Reference Chart</a>
+      <a href="#warranty">Five Year Limited Warranty</a>
+      <a href="#fcc">FCC Regulatory Information</a>
+      <a href="#copyright">Copyright Notice</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <section class="section" id="before-you-start">
+      <h2>Before You Start</h2>
+      <p>Please read the entire installation manual. The thermostat will need to be correctly wired and configured for proper operation. Basic HVAC configuration can be performed from the thermostat touchscreen and advanced settings are accessed via your network and the Internet.</p>
+    </section>
+
+    <section class="section" id="introduction">
+      <h2>Introduction</h2>
+      <p>The X-Series thermostat is a network-connected color touchscreen thermostat with an advanced remote sensor bus, designed for new or replacement commercial or residential applications. It supports up to 3 Heat / 2 Cool heat pumps and 2 Heat / 2 Cool conventional systems. Internal webpages help deliver a near-effortless setup of your daily schedules (4 events per day), and up to 40 Special and 40 Calendar Events. The unique scheduling structure also supports the powerful features of adjustable temporary override times, temperature ranges, occupied and unoccupied events, keypad lockout, and many more features.</p>
+      <p>Available in both Wi-Fi and Ethernet models, the X-Series supports NetX CloudConnect&#8482;, DirectConnect&#8482;, and PCConnect&#8482; Software Tools.</p>
+    </section>
+
+    <section class="section" id="core-features">
+      <h2>Core Features</h2>
+      <ul>
+        <li>4 independent schedules per day</li>
+        <li>40 Calendar Event Schedules</li>
+        <li>40 Special Event Schedules</li>
+        <li>Integrated Humidity Sensor</li>
+        <li>Integrated Weather with Current Conditions &amp; 7-Day Forecasts</li>
+        <li>Occupancy Sensor Input</li>
+        <li>14 Remote Sensors: up to 6 indoor, 1 humidity, 1 outdoor, and up to 3 auxiliary sensors for monitoring items such as supply air, return air, walk-in refrigerators, freezers, etc.</li>
+        <li>2 Digital Inputs for Fault Conditions, including Condensate and Equipment Faults</li>
+        <li>Email &amp; Text Message Alerting for 4 Recipients</li>
+        <li>Alerts include Hi/Lo Temps for Indoor, Outdoor, Supply, Return, and Aux Temps, Inefficient Equipment Runs, Change Filter Notifications, and Two Digital Inputs: 19 Alerts in All</li>
+      </ul>
+    </section>
+
+    <section class="section" id="whats-in-the-box">
+      <h2>What Is In The Box</h2>
+      <ul>
+        <li>(1) X-Series Thermostat Faceplate</li>
+        <li>(1) Wiring Backplate</li>
+        <li>(2) 3/16&quot; Drywall anchors</li>
+        <li>(2) Mounting Screws</li>
+        <li>(1) Installation Manual</li>
+      </ul>
+    </section>
+
+    <section class="section" id="bacnet-modbus">
+      <h2>BACnet &amp; Modbus Protocols</h2>
+      <p>The X-Series thermostat includes both BACnet and Modbus protocols for use in different building automation scenarios.</p>
+      <p>Either BACnet or Modbus may be configured, but only one may be in operation.</p>
+    </section>
+
+    <section class="section" id="callout">
+      <h2>Thermostat Callout</h2>
+      <div class="diagram-wrap">
+        <img src="images/240273-02-X-Series-Callout-1.svg" alt="X-Series Thermostat Callout Diagram" />
+        <p class="diagram-caption">Fig. 1 &#8212; Thermostat Callout</p>
+      </div>
+      <ol>
+        <li>Special Status Notification</li>
+        <li>Secondary Notification Icons</li>
+        <li>Current Equipment Mode Indicators</li>
+        <li>Lock, Override, and Hold Icons</li>
+        <li>Current Operation Status Icons</li>
+        <li>Secondary Status Icons</li>
+        <li>Remote Sensor Value (humidity and temperature)</li>
+        <li>Remote Sensor Icons (temperature, indoor, outdoor icons)</li>
+        <li>Occupancy Detection Icon</li>
+        <li>Dot Matrix Display</li>
+        <li>Clock Display</li>
+        <li>Menu Button</li>
+        <li>Mode Button</li>
+        <li>Fan Button</li>
+        <li>Hold Button</li>
+        <li>Resume/Cancel/Power Button</li>
+        <li>Day of Week Icons</li>
+        <li>Active Schedule Icons</li>
+        <li>Current Temperature Display</li>
+        <li>Up Button (Up Arrow)</li>
+        <li>Down Button (Down Arrow)</li>
+        <li>Back Button (Left Arrow)</li>
+        <li>Accept Button (Right Arrow)</li>
+      </ol>
+    </section>
+
+    <section class="section" id="location">
+      <h2>Thermostat Location</h2>
+      <p>To ensure proper operation, the thermostat should be mounted on an inside wall in a frequently occupied area of the space. In addition, its position must be at least 18&quot; (46 cm) from any outside wall, and approximately 5&#39; (1.5 m) above the floor in a location with freely circulating air of an average temperature.</p>
+      <p>Be sure to avoid the following locations:</p>
+      <ul>
+        <li>Behind doors or in corners where freely circulating air is unavailable</li>
+        <li>Where direct sunlight or radiant heat from appliances might affect control operation</li>
+        <li>On an outside wall</li>
+        <li>Adjacent to, or in line with, conditioned air discharge grilles, stairwells, or outside doors</li>
+        <li>Where its operation may be affected by steam or water pipes or warm air stacks in an adjacent partition, or by any unheated/uncooled area behind the thermostat</li>
+        <li>Where operation may be affected by lighting dimmers</li>
+        <li>Where operation will be affected by the supply air of an adjacent unit</li>
+        <li>Near electrical source interference such as arcing relay contacts</li>
+      </ul>
+    </section>
+
+    <section class="section" id="mount-backplate">
+      <h2>Mount Thermostat Backplate</h2>
+      <div class="callout danger">
+        <span class="callout-icon">&#9889;</span>
+        <div><strong>BEFORE YOU BEGIN:</strong> Turn off the power to the HVAC equipment.</div>
+      </div>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div><strong>TIP:</strong> If you are replacing an existing thermostat, take a picture of the thermostat wiring for reference.</div>
+      </div>
+      <ol>
+        <li>From the factory, the thermostat faceplate is not firmly connected to the backplate. While holding the thermostat firmly near the bottom, gently pull apart the backplate from the faceplate.</li>
+        <li>Place the rectangular opening in the backplate over the equipment control wires protruding from the wall. Use the backplate as a template and mark the location of the two mounting holes.
+          <div class="callout note" style="margin-top:10px;">
+            <span class="callout-icon">&#8505;</span>
+            <div><strong>NOTE:</strong> There are several versions of the X-Series thermostat. The wiring instructions for the equipment are identical.</div>
+          </div>
+        </li>
+        <li>Use the supplied anchors and screws for mounting on drywall or plaster; drill two 3/16&quot; (5mm) diameter holes at the marked locations; tap the nylon anchors flush to the wall surface and fasten the backplate using the supplied screws.
+          <div class="callout warning" style="margin-top:10px;">
+            <span class="callout-icon">&#9888;&#65039;</span>
+            <div><strong>WARNING:</strong> Do not over-tighten the screws!</div>
+          </div>
+        </li>
+        <li>Connect the wires from your system to the thermostat terminals as shown in the Wiring Diagrams section of this manual. Carefully dress the wires so that any excess is pushed back into the wall cavity or junction box. Ensure that the wires are flush with the plastic backplate. The access hole should be sealed or stuffed to prevent drafts from affecting the thermostat.</li>
+        <li>Reattach the faceplate to the backplate by placing the top of the faceplate over the top lip of the backplate.</li>
+        <li>Gently swing the thermostat down and press on the bottom center edge until it snaps in place. This is a tight connection but may require a little wiggle to align the pins on the faceplate with the screw terminals on the backplate before it snaps into place.</li>
+        <li>Reconnect power to the HVAC equipment. You are now ready to configure your thermostat for operation.</li>
+      </ol>
+      <div class="callout danger">
+        <span class="callout-icon">&#9940;</span>
+        <div><strong>WARNING:</strong> Your thermostat is NOT ready to use. You must complete the Thermostat Setup section before using the thermostat. Failure to do this can result in damage to your equipment.</div>
+      </div>
+    </section>
+
+    <section class="section" id="thermostat-setup">
+      <h2>Thermostat Setup</h2>
+      <p>The Dot Matrix Display will provide feedback on the User Menu or Installer Menu configuration and selected options. The Up Button and Down Button are used to select parameters while the LEFT ARROW (Back Button) and RIGHT ARROW (Accept button) are used to accept settings and navigate through the menu. You can use the CANCEL BUTTON to leave the User or Installer Menu at any time.</p>
+    </section>
+
+    <section class="section" id="user-menu">
+      <h2>Touchscreen User Menu Settings</h2>
+      <p>Tap the Menu Button on the lower left of the thermostat touchscreen to access the User Menu. The Dot Matrix Area will guide you through the User settings. To save a setting and navigate to the next menu item, press the Checkmark Button (Right Arrow). To return to the previous menu item, press the Back Button (Left Arrow). Use the Up and Down Buttons to select from the available options for each setting.</p>
+
+      <h3>Brightness &#8212; Screen Brightness</h3>
+      <p>Select the brightness of the touchscreen display.</p>
+      <p><strong>Options:</strong> Auto (default), High, Medium, Low</p>
+
+      <h3>Color &#8212; Display Color</h3>
+      <p>Select the color of your display. The default is Cyan.</p>
+      <p><strong>Options:</strong> Cyan, Purple, Yellow, White, Red, Green, and Blue.</p>
+
+      <h3>Display Complexity</h3>
+      <p>There are three different resting display options.</p>
+      <ul>
+        <li><strong>Full</strong> (default) &#8212; Shows the entire screen all the time</li>
+        <li><strong>Minimal</strong> &#8212; If nothing is noticed by the sensor for 5 seconds, only room temperature shows.</li>
+        <li><strong>Dark</strong> &#8212; If nothing is noticed by the sensor for 5 seconds, the whole screen goes blank.</li>
+      </ul>
+
+      <h3>Adjust Clock &#8212; 12 Hr or 24 Hr</h3>
+      <p>Select between AM/PM or 24H time display. 12 Hr is the default.</p>
+
+      <h3>&#176;F or &#176;C Temperature Display</h3>
+      <p>Select between &#176;F (Fahrenheit) or &#176;C (Celsius) temperature display. &#176;F (Fahrenheit) is the default.</p>
+    </section>
+
+    <section class="section" id="installer-menu">
+      <h2>Touchscreen Installer Menu Settings</h2>
+      <p>Press and hold the Menu Button on the lower left of the thermostat touchscreen for 5 seconds to access. <em>Installer Menu</em> will briefly display in the Dot Matrix Area followed by <em>Conventional/HP</em>. To save a setting and advance to the next menu item, press the Checkmark Button (Right Arrow). To return to the previous menu item, press the Back Button (Left Arrow).</p>
+
+      <h3>Conventional / Heat Pump</h3>
+      <p>Select between Conventional or Heat Pump operation. Conventional is the default.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> If Conventional is selected, proceed to <em>Stages Cool</em>. If Heat Pump is selected, proceed to <em># of Compressors</em>.</div>
+      </div>
+
+      <h3>Stages Cool</h3>
+      <p>Select between 1 or 2 Stages Cool. The value is displayed in the main display. Default is 1.</p>
+
+      <h3>Stages Heat</h3>
+      <p>Select between 1 or 2 Stages of Heat. The value is displayed in the Main Display. Default is 1.</p>
+
+      <h3>Gas or Electric Heat</h3>
+      <p>Select between Gas or Electric operation. Gas heat is the default.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> If you selected Conventional Heat, proceed to <em>Minimum On Time</em>.</div>
+      </div>
+
+      <h3># of Compressors</h3>
+      <p>Select between 1 or 2 Stage Compressor. The value is displayed in the main display. Default is 1.</p>
+
+      <h3>Enable Aux/EHeat</h3>
+      <p>Select between Aux/EHeat Mode On (default) or Aux/EHeat Mode Off.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> If Aux/EHeat ON is selected, proceed to <em>Heat Pump Option</em>. Otherwise, proceed to <em>Minimum On-Time</em>.</div>
+      </div>
+
+      <h3>Heat Pump Option</h3>
+      <p>Select between HP Regular (default) or HP Dual Fuel. If needed, the thermostat will perform the function of a fossil fuel kit. When HP Dual Fuel is selected the thermostat will turn off the compressor with a call for AUX heat. The HP Regular option will allow the compressor and AUX heat to run simultaneously.</p>
+
+      <h3>Minimum On Time</h3>
+      <p>Select between 0&#8211;5 Minutes. The value is displayed in the main display. 0 Minutes is the default. The system will operate for a minimum of 0 to 5 minutes depending on your setting.</p>
+
+      <h3>Minimum Off Time</h3>
+      <p>Select between 2 to 5 Minutes. Default is 2 Minutes. The system will allow equipment recovery for 2 to 5 minutes before turning it on again. This is also known as short-cycle protection.</p>
+
+      <h3>Adaptive Recovery</h3>
+      <p>Select On (default) or Off. When enabled, the thermostat will anticipate when to turn on the heating or cooling system before the start of a schedule to achieve the desired setpoint temperature by the beginning of the schedule.</p>
+
+      <h3>Fan Purge</h3>
+      <p>Select between Off, 30, 60, 90, and 120 Seconds. Off is the default.</p>
+
+      <h3>1st Stage Differential</h3>
+      <p>Select between 1&#8211;6&#176;F (0.5&#8211;3&#176;C). Default is 1&#176;F (0&#176;C). The 1st Stage Differential is the temperature degree change required before the thermostat responds.</p>
+
+      <h3>2nd Stage Differential</h3>
+      <p>Select between 1&#8211;6&#176;F (0.5&#8211;3&#176;C). Default is 3&#176;F (1.5&#176;C).</p>
+
+      <h3>2nd Stage Delay</h3>
+      <p>Select between 5&#8211;40 Minutes. Default is 20 Minutes.</p>
+
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> The following options only apply to multi-stage heat pump configuration.</div>
+      </div>
+
+      <h3>Aux Heat Diff</h3>
+      <p>Select between 1&#8211;6&#176;F (0.5&#8211;3&#176;C). Default is 1&#176;F (0.5&#176;C).</p>
+
+      <h3>Aux Heat Delay</h3>
+      <p>Select between 5&#8211;40 Minutes. Default is 20 Minutes.</p>
+
+      <h3>High &amp; Low Balance Point Configuration</h3>
+      <p>If the thermostat is being used as a Heat Pump thermostat and current weather conditions are enabled or an outdoor sensor is connected to the remote sensor terminals, the thermostat can be configured to disable the use of auxiliary heat during warmer weather and to lock out the compressor during colder weather.</p>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div><strong>TIP:</strong> Refer to the manufacturer&#39;s heat pump equipment manual for temperature cut-offs on the equipment.</div>
+      </div>
+
+      <h3>Low Balance Point</h3>
+      <p>Select between &#8722;54&#176;F to 39&#176;F (&#8722;48&#176;C to 4&#176;C). This will lock out the heat pump at the selected outdoor temperature. Default is &#8722;54&#176;F (&#8722;48&#176;C).</p>
+
+      <h3>High Balance Point</h3>
+      <p>Select between 41&#176;F&#8211;118&#176;F (5&#176;C&#8211;48&#176;C). This will lock out the auxiliary heat at the selected outdoor temperature. Default is 118&#176;F (48&#176;C).</p>
+    </section>
+
+    <section class="section" id="temp-override">
+      <h2>Touchscreen Temperature Override</h2>
+
+      <h3>Temperature Override Range (During Lockout)</h3>
+      <p>On the Basic Configuration page, this setting adjusts the temperature variance allowed from the scheduled setpoint when the faceplate is locked. The range is from &#177;2&#176;F (1&#176;C) to &#177;8&#176;F (4&#176;C). Default is &#177;3&#176;F (1.5&#176;C).</p>
+
+      <h3>Temporary Override (Up to 24 Hours)</h3>
+      <p>Change the temperature setting temporarily without affecting the schedules, both occupied and unoccupied. Use the Up and Down Buttons to adjust the temperature within the minimum and maximum range. This temperature will be maintained for the duration set by the Override Timer. To cancel, simply press the Cancel Button.</p>
+
+      <h3>Temporary Override During Lockout (Up to 24 Hours)</h3>
+      <p>Change the temperature setting temporarily without affecting the schedules, even though the keypad is locked. Use the Up and Down Buttons to adjust the temperature limited to the Temperature Override Range setting. This temperature will be maintained for the duration set by the Override Timer. To cancel, simply press the Cancel Button.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> If running an OCCUPIED schedule, the currently occupied setpoint will be shown. If running an UNOCCUPIED schedule the thermostat will revert to the most previous OCCUPIED schedule setpoints.</div>
+      </div>
+    </section>
+
+    <section class="section" id="additional-settings">
+      <h2>Additional Settings &amp; Features</h2>
+      <p>In addition to the User Menu and Installer Menu, the X-Series thermostat has additional options that can be set using the built-in web pages or via the cloud interface. Unless otherwise noted, these additional settings are available under the Configuration menu tab of the built-in web pages.</p>
+
+      <h3>Override Timer</h3>
+      <p>On the Basic Configuration page, you will be able to adjust the length of a temporary override condition from 0 minutes to 24 hours, in 10-minute increments. The default override time is 8 hours.</p>
+
+      <h3>Temperature Calibration Offset</h3>
+      <p>The thermostat is pre-calibrated at the factory, but in some installations, lack of airflow at the sensor or proximity to other warming or cooling sources may cause the temperature to be off by a few degrees. The X-Series thermostat includes a temperature calibration offset with a range of &#177;6&#176;F (3&#176;C) in 0.2&#176;F (0.1&#176;C) increments. The Temperature Calibration Offset is on the HVAC Settings web page of the thermostat.</p>
+
+      <h3>Lock Screen</h3>
+      <p>The X-Series thermostat can restrict and lock out certain functions available from the faceplate. The Lock Screen can be activated from the HVAC Settings web page on the thermostat. When engaged, you can set a 4-digit PIN code that can be used to temporarily unlock the faceplate for 30 minutes.</p>
+
+      <h3>Temporarily Unlock Faceplate</h3>
+      <p>When the X-Series thermostat is placed on the Locked Screen, you can temporarily bypass the Lock Screen by entering the 4-digit PIN. To temporarily unlock the faceplate, follow the steps below.</p>
+      <ol>
+        <li>Press the bottom left area of the touchscreen where the Menu Button is usually located. <em>Temporary Unlock</em> will display in the Dot Matrix Display.</li>
+        <li>The Dot Matrix area will then display <em>Enter PIN: 0 0 0 0</em>. Use the Up and Down Buttons to select the first digit in the PIN code. Press the Accept Button (Right Arrow) to enter the first digit.</li>
+        <li>Repeat Step 2 for the next three digits.</li>
+      </ol>
+      <p>When you enter the correct PIN, the thermostat will return to the main screen and display a countdown timer <em>Unlock: 30 min left</em> in the Dot Matrix Display. To re-lock the screen, press the Cancel Button on the right.</p>
+      <div class="callout warning">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <div><strong>WARNING:</strong> If you enter the incorrect PIN, <em>Wrong PIN</em> will display in the Dot Matrix display. After 3 wrong attempts, the thermostat will return to the main screen and will not allow another attempt for 5 minutes.</div>
+      </div>
+
+      <h3>LED1 / Filter Indicator</h3>
+      <p>If selected by software, the Filter Icon will illuminate when a signal is received from the Terminal LED1 on the Terminal block. This indicates the filter needs to be changed. Otherwise, the status of Terminal LED1 will be reported on the Status Update page of the thermostat.</p>
+
+      <h3>LED2 / Service Indicator</h3>
+      <p>If selected by the software, the Service Indicator icon will illuminate when a signal is received from Terminal LED2 on the terminal block. This terminal is normally connected to the L terminal on a heat pump. When a signal is received, the WRENCH icon will display on the thermostat screen, indicating that service is required.</p>
+
+      <h3>Auxiliary/Emergency Heat Indicator</h3>
+      <p>The thermostat is equipped with the Emergency Heat icon in the Main Status Icons area on the faceplate, which indicates when the system has engaged auxiliary heat mode or emergency heat mode.</p>
+
+      <h3>Random Restart</h3>
+      <p>After a power failure, the thermostat will delay the heating/cooling equipment start-up by 1&#8211;24 seconds. When multiple X-Series thermostats are used, this minimizes the &#8220;in rush&#8221; current (electric power usage) as it reduces the number of HVAC units that will be turned on simultaneously.</p>
+
+      <h3>Power Failures</h3>
+      <p>The X-Series thermostat has an internal power backup that will last approximately two days. If the thermostat experiences a power outage less than this time, all functions will resume as soon as power is restored. If the power outage lasts longer, upon power restoration the thermostat will recover depending on the following factors:</p>
+      <ul>
+        <li><strong>Time set via NTP (Network Time Protocol):</strong> When the power is restored and the thermostat connects to the internet, it will resume normal programmed operation.</li>
+        <li><strong>Time set manually:</strong> When power is restored, the clock will flash 12:00 and will operate in Manual Mode until the time is set. After the time has been set, the thermostat will resume normal programmed operation.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="remote-sensors">
+      <h2>Remote Sensors (Optional)</h2>
+      <p>If your thermostat has been installed with one or more remote sensors, the sensor information is available on the small secondary display of the thermostat. There are many different remote sensor options.</p>
+      <p>You can view the remote sensor information by tapping the upper left part of the display to view different attached remote sensors.</p>
+
+      <h3>RS1 &#8211; RS2 &#8211; RS+V: Remote Sensor Bus</h3>
+      <p>Used for connection of a wide variety of remote sensors, allowing installation flexibility and additional information from the communications bus. It also allows the thermostat to be placed in an area away from view.</p>
+
+      <h3>Remote Sensor Averaging</h3>
+      <p>If remote temperature sensors are connected, the thermostat can either use the remote sensors (default) or average the remote sensor and the internal temperature sensor. The Remote Sensor Averaging setting can be accessed from the HVAC Settings web page of the thermostat.</p>
+      <div class="callout note">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>NOTE:</strong> If no remote sensors are detected, the thermostat will default to the internal temperature sensor regardless of the selected option.</div>
+      </div>
+
+      <h3>On-Board Data Logging with Sub-Metering Support</h3>
+      <p>The NetX Platform provides reliable deep-data analysis for runtimes and all thermostat operations. This data can be used to perform sub-metering analysis to bill tenants according to actual HVAC usage for heating and cooling. Onboard memory supports approximately 30 days of records.</p>
+    </section>
+
+    <section class="section" id="programming">
+      <h2>Programming The Thermostat</h2>
+      <p>This thermostat product has factory default programs as indicated below. Based on energy-saving guidelines and recommendations for residential use, these settings can reduce heating/cooling expenses by as much as 33%.</p>
+      <div class="diagram-wrap">
+        <img src="images/240273-08-X-Series-Program.svg" alt="X-Series Default Programming Schedule" />
+        <p class="diagram-caption">Fig. 2 &#8212; Default Programming Schedule</p>
+      </div>
+      <p>This thermostat is intended to be used as a Communicating Programmable Thermostat, with changes to the thermostat schedules accomplished over a computer interface via:</p>
+      <ol>
+        <li>CloudConnect&#8482; Internet-Based Cloud Service</li>
+        <li>PCConnect&#8482; Local Network &amp; Port Forwarded Access</li>
+        <li>DirectConnect&#8482; Integrated Web Server for Connectivity from Any Modern Web Browser</li>
+        <li>Integrated NetX&#8482; API, Supports 3rd Party Apps</li>
+        <li>BACnet Integration Option</li>
+      </ol>
+    </section>
+
+    <section class="section" id="wiring">
+      <h2>Wiring Diagrams</h2>
+      <p>The basic wiring for the X-Series thermostats is identical for both the WBM-WiFi (wireless) or WBM-IP (ethernet) Communication Backplate versions of the thermostat.</p>
+      <div class="diagram-wrap">
+        <img src="images/240273-04-X-Series-Wiring-3.svg" alt="X-Series Wiring Diagram" />
+        <p class="diagram-caption">Fig. 3 &#8212; Basic Wiring Diagram &#8212; WBM-WiFi / WBM-IP (identical)</p>
+      </div>
+
+      <h3>Terminal Connection Reference</h3>
+      <table class="terminal-table">
+        <thead>
+          <tr><th>Terminal</th><th>Function</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="terminal-id">K/H/D</span></td><td>Humidification or Dehumidification, AUX Relay 1, or Fan 3</td></tr>
+          <tr><td><span class="terminal-id">Y2</span></td><td>Energizes compressor for second-stage cooling, or for heat pumps, either second-stage heating or cooling</td></tr>
+          <tr><td><span class="terminal-id">W1</span></td><td>Energizes heater for first-stage heating, or for heat pumps, auxiliary/emergency heat</td></tr>
+          <tr><td><span class="terminal-id">Y1</span></td><td>Energizes compressor for first-stage cooling, or for heat pumps, either first-stage heating or cooling</td></tr>
+          <tr><td><span class="terminal-id">G</span></td><td>Energizes fan circuit with a call for heating or cooling</td></tr>
+          <tr><td><span class="terminal-id">R</span></td><td>Independent Switching Voltage from HVAC equip</td></tr>
+          <tr><td><span class="terminal-id">24V</span></td><td>24 Vac</td></tr>
+          <tr><td><span class="terminal-id">24V(c)</span></td><td>24 Vac Common</td></tr>
+          <tr><td><span class="terminal-id">O/W2</span></td><td>Energizes heater for second-stage heating, or for heat pumps, energizes the reversing valve in cooling mode</td></tr>
+          <tr><td><span class="terminal-id">B</span></td><td>Energizes the reversing valve in heating mode</td></tr>
+          <tr><td><span class="terminal-id">LED1</span></td><td>24 Vac Input #1 for Filter or other Alert</td></tr>
+          <tr><td><span class="terminal-id">LED2</span></td><td>24 Vac Input #2 for Condensate, Fault, or other Alert</td></tr>
+          <tr><td><span class="terminal-id">CLK1</span></td><td>For use with External Occupancy Sensor ( + )</td></tr>
+          <tr><td><span class="terminal-id">CLK2</span></td><td>For use with External Occupancy Sensor ( &#8722; )</td></tr>
+          <tr><td><span class="terminal-id">RS2</span></td><td>Remote Sensor Bus (Power Return)</td></tr>
+          <tr><td><span class="terminal-id">RS1</span></td><td>Remote Sensor Bus (Data)</td></tr>
+          <tr><td><span class="terminal-id">RS+V</span></td><td>Remote Sensor Bus (Power)</td></tr>
+          <tr><td><span class="terminal-id">K2</span></td><td>Independent Relay AUX Relay 2 or Fan 2</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="independent-power">
+      <h2>Independent Power Source (Optional)</h2>
+      <p>In situations where power from the HVAC hardware does not meet the needs of the X-Series thermostat, you can power the thermostat independently of the HVAC unit. A 24 VAC Transformer has the capability to power six X-Series thermostats. Follow the steps below to install a separate power source.</p>
+      <div class="diagram-wrap">
+        <img src="images/240273-05-X-Series-Jumper-1.svg" alt="Jumper Removal Diagram" />
+        <p class="diagram-caption">Fig. 4 &#8212; Remove Jumper for Independent Power</p>
+      </div>
+      <ol>
+        <li>Remove the jumper on the faceplate.</li>
+        <li>Place the separate transformer 24 VAC wire in the 24 VAC terminal.</li>
+        <li>Move the WiFi or Ethernet board RED wire from R to the 24 VAC terminal.</li>
+        <li>Leave the WiFi or Ethernet board BLACK wire in the 24V(c) terminal. If connected, remove the thermostat wire from the 24 VAC(c) terminal.</li>
+        <li>Place the equipment red wire in R.</li>
+        <li>Place the separate transformer 24 VAC (Common) wire in the 24V(c) terminal.</li>
+        <li>The common from the equipment does not connect to the thermostat. This can cause a ground loop and issues.</li>
+      </ol>
+      <div class="diagram-wrap">
+        <img src="images/240273-06-X-Series-Power.svg" alt="Independent Power Wiring Diagram" />
+        <p class="diagram-caption">Fig. 5 &#8212; Independent Power Source Wiring</p>
+      </div>
+    </section>
+
+    <section class="section" id="wiring-chart">
+      <h2>Wiring Diagram Cross Reference Chart</h2>
+      <p>The chart below lists the connections needed for most common applications. Refer to the Basic Wiring Diagram for where to connect appropriate wires.</p>
+      <div class="diagram-wrap">
+        <img src="images/240273-07-X-Series-Chart.svg" alt="Wiring Cross Reference Chart" />
+        <p class="diagram-caption">Fig. 6 &#8212; Wiring Cross Reference Chart</p>
+      </div>
+    </section>
+
+    <section class="section" id="warranty">
+      <h2>Five (5) Year Limited Warranty</h2>
+      <p>Network Thermostat&#8482; warrants to the original purchaser that this product will be free from defects in workmanship and materials for a period of five years from the date of purchase with proof of purchase.</p>
+
+      <h3>Warranty Limitations</h3>
+      <p>This warranty begins on the date of purchase.</p>
+      <p><strong>Warranty is Void if:</strong></p>
+      <ul>
+        <li>The date code or serial number is defaced or removed.</li>
+        <li>The product has a defect or damage due to product alteration, connection to an improper electrical supply, shipping and handling, accident, fire, flood, lightning, or other conditions beyond the control of the manufacturer.</li>
+        <li>The product is not installed according to the manufacturer&#39;s instructions and specifications.</li>
+      </ul>
+      <p><strong>Owner&#39;s Responsibility:</strong></p>
+      <ul>
+        <li>Provide proof of purchase.</li>
+        <li>Provide normal care and maintenance.</li>
+        <li>Pay for freight, labor, and travel.</li>
+        <li>Return any defective product.</li>
+        <li>In no event shall the manufacturer be liable for incidental or consequential damages.</li>
+      </ul>
+      <p>This warranty gives you specific legal rights and you may have others that vary by state and/or province. The manufacturer&#39;s continuing commitment to quality products may require a change in specifications without notice.</p>
+
+      <h3>CA Title 24 Requirements</h3>
+      <p>This thermostat meets the Joint Appendix 5 (JA5) requirements for Occupant Controlled Smart Thermostat (OCST) certification of the California Energy Commission (CEC).</p>
+    </section>
+
+    <section class="section" id="fcc">
+      <h2>FCC Regulatory Information</h2>
+      <p>This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy, and if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:</p>
+      <ul>
+        <li>Reorient or relocate the receiving antenna</li>
+        <li>Increase the separation between the equipment and the receiver</li>
+        <li>Connect the equipment to an outlet on a circuit different from that to which the receiver is connected</li>
+        <li>Consult the dealer or an experienced radio/TV technician for help</li>
+      </ul>
+    </section>
+
+    <section class="section" id="copyright">
+      <h2>Copyright Notice</h2>
+      <p>This manual and its content are provided by mwConnect in partnership with Network Thermostat. Source content &#169; Network Thermostat 2022. All rights reserved.</p>
+      <p>BACnet&#8482; is a trademark of ASHRAE.</p>
+      <p>Modbus&#8482; is a registered trademark of Schneider Automation Inc.</p>
+      <p>TruBlu&#8482; and mwConnect are trademarks of mwConnect.</p>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="mwConnect" />
+    </div>
+    <div>
+      <h4>mwConnect</h4>
+      <a href="https://mwconnect.us">mwconnect.us</a>
+      <a href="https://mwconnect.us/solutions/trublu-mesh/">TruBlu&#8482; Mesh</a>
+      <a href="https://mwconnect.us/contact">Contact Us</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="index.html">X-Series Installation Manual</a>
+      <a href="commissioning-guide.html">Thermostat Commissioning Guide</a>
+      <a href="https://networkthermostat.com/doc/240273">NetX 240273 Source (external)</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&#169; 2026 <span class="mwc">mwConnect</span>. All rights reserved.</span>
+    <span>X-Series Installation Manual &#8212; Partner Documentation</span>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var sections = document.querySelectorAll('.section[id]');
+    var links = document.querySelectorAll('#toc-nav a');
+    function setActive() {
+      var scrollY = window.scrollY + 80;
+      var current = '';
+      sections.forEach(function(s) { if (s.offsetTop <= scrollY) current = s.id; });
+      links.forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  })();
+</script>
+
+</body>
+</html>

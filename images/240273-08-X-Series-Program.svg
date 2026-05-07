@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 959 407" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.762736,0,0,1,-1600.7,-402.103)">
+        <g transform="matrix(1.31107,0,0,1,-653.247,-1.25056e-12)">
+            <rect x="2100" y="404.187" width="956.25" height="80.4"/>
+            <path d="M2100,564.987L3056.25,564.987L3056.25,645.387L2100,645.387L2100,564.987ZM2100,725.787L3056.25,725.787L3056.25,806.187L2100,806.187L2100,725.787Z" style="fill:rgb(209,211,212);"/>
+        </g>
+        <g transform="matrix(1.31107,0,0,1,-653.247,-1.25056e-12)">
+            <g transform="matrix(25,0,0,25,2158.59,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2173.86,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2188.21,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2206.26,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2224.31,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2237.29,435.087)">
+            </g>
+            <text x="2139.61px" y="435.087px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">DEFAULT</text>
+            <g transform="matrix(25,0,0,25,2137.53,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2154.65,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2173.18,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2188.45,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2207.43,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2225.48,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2238.45,472.587)">
+            </g>
+            <g transform="matrix(25,0,0,25,2253.73,472.587)">
+            </g>
+            <text x="2123.18px" y="472.587px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">SCHEDULES</text>
+            <g transform="matrix(25,0,0,25,2373.45,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2388.73,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2404.48,435.087)">
+            </g>
+            <text x="2354.93px" y="435.087px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">HEA<tspan x="2404.47px " y="435.087px ">T</tspan></text>
+            <text x="2336.62px" y="472.587px" style="font-family:'Avenir-Book', 'Avenir';font-size:25px;fill:white;">(Mon-Fri)</text>
+            <g transform="matrix(25,0,0,25,2559.38,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2580.2,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2601.03,435.087)">
+            </g>
+            <text x="2542.25px" y="435.087px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">COOL</text>
+            <text x="2527.88px" y="472.587px" style="font-family:'Avenir-Book', 'Avenir';font-size:25px;fill:white;">(Mon-Fri)</text>
+            <g transform="matrix(25,0,0,25,2755.95,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2771.23,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2786.98,435.087)">
+            </g>
+            <text x="2737.43px" y="435.087px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">HEA<tspan x="2786.97px " y="435.087px ">T</tspan></text>
+            <text x="2720.28px" y="472.587px" style="font-family:'Avenir-Book', 'Avenir';font-size:25px;fill:white;">(Sat-Sun)</text>
+            <g transform="matrix(25,0,0,25,2941.88,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2962.7,435.087)">
+            </g>
+            <g transform="matrix(25,0,0,25,2983.53,435.087)">
+            </g>
+            <text x="2924.75px" y="435.087px" style="font-family:'Avenir-Heavy', 'Avenir', sans-serif;font-weight:900;font-size:25px;fill:white;">COOL</text>
+            <text x="2911.53px" y="472.587px" style="font-family:'Avenir-Book', 'Avenir';font-size:25px;fill:white;">(Sat-Sun)</text>
+            <g transform="matrix(25,0,0,25,2155.13,515.487)">
+            </g>
+            <g transform="matrix(25,0,0,25,2175.93,515.487)">
+            </g>
+            <g transform="matrix(25,0,0,25,2192.13,515.487)">
+            </g>
+            <g transform="matrix(25,0,0,25,2212.5,515.487)">
+            </g>
+            <g transform="matrix(25,0,0,25,2219.9,515.487)">
+            </g>
+            <g transform="matrix(25,0,0,25,2240.28,515.487)">
+            </g>
+            <text x="2131.53px" y="515.487px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:25px;fill:rgb(35,31,32);">MORNING</text>
+            <text x="2127.97px" y="552.987px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(Schedule 1)</text>
+            <text x="2363.93px" y="515.487px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">70˚F</text>
+            <text x="2355.58px" y="552.987px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(21˚C)</text>
+            <text x="2555.18px" y="515.487px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">76˚F</text>
+            <text x="2546.83px" y="552.987px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(25˚C)</text>
+            <text x="2726.76px" y="534.237px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2918.01px" y="534.237px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <g transform="matrix(25,0,0,25,2186.83,595.887)">
+            </g>
+            <g transform="matrix(25,0,0,25,2205.35,595.887)">
+            </g>
+            <text x="2169.7px" y="595.887px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:25px;fill:rgb(35,31,32);">DA<tspan x="2205.35px " y="595.887px ">Y</tspan></text>
+            <text x="2127.97px" y="633.387px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(Schedule 2)</text>
+            <text x="2344.26px" y="614.637px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2535.51px" y="614.637px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2726.76px" y="614.637px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2918.01px" y="614.637px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <g transform="matrix(25,0,0,25,2153.03,676.287)">
+            </g>
+            <g transform="matrix(25,0,0,25,2170.63,676.287)">
+            </g>
+            <g transform="matrix(25,0,0,25,2186.38,676.287)">
+            </g>
+            <g transform="matrix(25,0,0,25,2206.75,676.287)">
+            </g>
+            <g transform="matrix(25,0,0,25,2214.15,676.287)">
+            </g>
+            <g transform="matrix(25,0,0,25,2234.53,676.287)">
+            </g>
+            <text x="2137.28px" y="676.287px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:25px;fill:rgb(35,31,32);">EVENING</text>
+            <text x="2127.97px" y="713.787px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(Schedule 3)</text>
+            <text x="2344.26px" y="695.037px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2535.51px" y="695.037px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2726.76px" y="695.037px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <text x="2918.01px" y="695.037px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <g transform="matrix(25,0,0,25,2175.73,756.687)">
+            </g>
+            <g transform="matrix(25,0,0,25,2183.13,756.687)">
+            </g>
+            <g transform="matrix(25,0,0,25,2202.58,756.687)">
+            </g>
+            <g transform="matrix(25,0,0,25,2221.55,756.687)">
+            </g>
+            <text x="2155.35px" y="756.687px" style="font-family:'Avenir-Black', 'Avenir', sans-serif;font-weight:800;font-size:25px;fill:rgb(35,31,32);">NIGHT</text>
+            <text x="2127.97px" y="794.187px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(Schedule 4)</text>
+            <text x="2363.93px" y="756.687px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">62˚F</text>
+            <text x="2355.58px" y="794.187px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(17˚C)</text>
+            <text x="2555.18px" y="756.687px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">82˚F</text>
+            <text x="2546.83px" y="794.187px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">(28˚C)</text>
+            <text x="2726.76px" y="775.437px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <g transform="matrix(25,0,0,25,3003.24,775.437)">
+            </g>
+            <text x="2918.01px" y="775.437px" style="font-family:'Avenir-Light', 'Avenir', sans-serif;font-weight:300;font-size:25px;fill:rgb(35,31,32);">Inactive</text>
+            <path d="M2100,403.145L2100,807.228M3056.25,403.145L3056.25,807.228M2291.25,404.187L2291.25,806.187M2482.5,404.187L2482.5,806.187M2673.75,404.187L2673.75,806.187M2865,404.187L2865,806.187M2100,404.187L3056.25,404.187M2100,484.587L3056.25,484.587M2100,564.987L3056.25,564.987M2100,645.387L3056.25,645.387M2100,725.787L3056.25,725.787M2100,806.187L3056.25,806.187" style="fill:none;stroke:white;stroke-width:2.08px;"/>
+        </g>
+    </g>
+</svg>

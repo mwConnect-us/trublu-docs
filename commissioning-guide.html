@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TruBlu™ Thermostat Commissioning Guide | mwConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-red:   #9B3020;
+      --warm-red:   #DF5433;
+      --near-black: #111111;
+      --charcoal:   #333333;
+      --mid-gray:   #666666;
+      --light-gray: #F2F2F2;
+      --white:      #FFFFFF;
+      --border:     #e0e0e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--charcoal);
+      background: var(--white);
+    }
+
+    /* ─── Site Header ─────────────────────────────────────── */
+    .site-header {
+      background: var(--white);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .site-header .logo { display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 36px; width: auto; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-nav a {
+      font-size: 13px; font-weight: 500; color: var(--charcoal);
+      text-decoration: none; padding: 0 8px;
+    }
+    .header-nav a:hover { color: var(--warm-red); }
+    .header-badge {
+      background: var(--light-gray);
+      color: var(--dark-red);
+      font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+      border: 1px solid #ddd; letter-spacing: 0.3px;
+    }
+
+    /* ─── Hero ────────────────────────────────────────────── */
+    .doc-hero {
+      background: linear-gradient(135deg, var(--dark-red) 0%, var(--warm-red) 100%);
+      color: white;
+      padding: 48px 40px;
+    }
+    .doc-hero h1 { font-size: 30px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+    .doc-hero .subtitle { font-size: 15px; opacity: 0.85; font-weight: 300; }
+    .doc-hero .meta { margin-top: 14px; font-size: 12px; opacity: 0.65; }
+
+    /* ─── Layout ──────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ─── Sidebar ─────────────────────────────────────────── */
+    .toc-sidebar {
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      background: var(--light-gray);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .toc-sidebar h2 {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--mid-gray); padding: 0 20px 12px;
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
+    }
+    .toc-sidebar nav a {
+      display: block; padding: 7px 20px; font-size: 13px;
+      color: var(--charcoal); text-decoration: none;
+      border-left: 3px solid transparent; transition: all 0.15s;
+    }
+    .toc-sidebar nav a:hover { background: white; border-left-color: var(--warm-red); color: var(--dark-red); }
+    .toc-sidebar nav a.active { background: white; border-left-color: var(--dark-red); color: var(--dark-red); font-weight: 500; }
+    .toc-sub {
+      display: block; padding: 4px 20px 4px 32px;
+      font-size: 12px; color: var(--mid-gray);
+      text-decoration: none; border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .toc-sub:hover { color: var(--warm-red); background: white; }
+
+    /* ─── Main Content ────────────────────────────────────── */
+    .main-content { padding: 48px 56px; max-width: 840px; }
+
+    /* ─── Sections ────────────────────────────────────────── */
+    .section { margin-bottom: 60px; scroll-margin-top: 80px; }
+    .section h2 {
+      font-size: 22px; font-weight: 600; color: var(--dark-red);
+      border-bottom: 2px solid var(--warm-red);
+      padding-bottom: 8px; margin-bottom: 20px;
+    }
+    .section h3 { font-size: 16px; font-weight: 600; color: var(--charcoal); margin: 24px 0 10px; }
+    .section p { margin-bottom: 14px; }
+    .section ul, .section ol { margin: 10px 0 14px 24px; }
+    .section li { margin-bottom: 6px; }
+
+    /* ─── Callout Boxes ───────────────────────────────────── */
+    .callout {
+      border-radius: 6px; padding: 12px 16px; margin: 16px 0;
+      font-size: 14px; display: flex; gap: 10px;
+    }
+    .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+    .callout.warning  { background: #fff3cd; border-left: 4px solid #f0a500; color: #664d03; }
+    .callout.tip      { background: #e8f5e9; border-left: 4px solid #43a047; color: #1b5e20; }
+    .callout.note     { background: #fde8e4; border-left: 4px solid var(--warm-red); color: #7f1d10; }
+    .callout.info     { background: #e3f2fd; border-left: 4px solid #1976d2; color: #0d47a1; }
+    .callout.result   { background: #fde8e4; border-left: 4px solid var(--dark-red); color: #7f1d10; }
+
+    /* ─── Step Panels ─────────────────────────────────────── */
+    .step-panel {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .step-panel-title {
+      background: var(--dark-red);
+      color: white;
+      font-size: 12px; font-weight: 600;
+      padding: 7px 16px;
+      letter-spacing: 0.3px;
+    }
+    .step-panel-body { padding: 16px 20px; }
+    .step-panel-body ol { margin-left: 20px; }
+    .step-panel-body li { margin-bottom: 8px; font-size: 15px; }
+
+    /* ─── Screenshot Images ───────────────────────────────── */
+    .sc-grid {
+      display: grid;
+      grid-template-columns: 54% 43%;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .sc-grid img, .sc-single img {
+      width: 100%; height: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .sc-single { margin: 16px 0; }
+    .sc-inline {
+      float: right;
+      width: 35%;
+      margin: 0 0 10px 16px;
+    }
+    .sc-inline img {
+      width: 100%; height: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .clearfix::after { content: ''; display: table; clear: both; }
+
+    /* ─── Tables ──────────────────────────────────────────── */
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14px; margin: 16px 0;
+    }
+    thead th {
+      background: var(--dark-red); color: white;
+      padding: 8px 12px; text-align: left; font-weight: 500;
+    }
+    tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tbody tr:nth-child(even) td { background: var(--light-gray); }
+    .td-label { font-weight: 600; }
+
+    /* ─── Disclaimer ──────────────────────────────────────── */
+    .disclaimer { font-size: 13px; line-height: 1.65; color: var(--mid-gray); }
+    .disclaimer p { margin-bottom: 10px; }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      background: var(--near-black); color: #aaa;
+      padding: 40px 40px 24px; font-size: 13px; margin-top: 60px;
+    }
+    .site-footer .footer-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: auto 1fr 1fr;
+      gap: 48px; align-items: start;
+    }
+    .footer-logo img { height: 32px; width: auto; opacity: 0.8; }
+    .site-footer h4 {
+      color: white; font-size: 12px; margin-bottom: 10px;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .site-footer a { color: #aaa; text-decoration: none; display: block; margin-bottom: 5px; }
+    .site-footer a:hover { color: var(--warm-red); }
+    .footer-bottom {
+      max-width: 1200px; margin: 28px auto 0;
+      padding-top: 16px; border-top: 1px solid #2a2a2a;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: #555;
+    }
+    .footer-bottom .mwc { color: var(--warm-red); font-weight: 600; }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc-sidebar { position: static; height: auto; }
+      .main-content { padding: 24px 20px; }
+      .site-footer .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .site-header { padding: 0 20px; }
+      .header-nav { display: none; }
+      .sc-grid { grid-template-columns: 1fr; }
+      .sc-inline { float: none; width: 100%; margin: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SITE HEADER ──────────────────────────────────────────── -->
+<header class="site-header">
+  <a href="https://mwconnect.us" class="logo">
+    <img src="images/logo.png" alt="mwConnect" />
+  </a>
+  <div class="header-right">
+    <nav class="header-nav">
+      <a href="https://mwconnect.us/solutions/trublu-mesh/">TruBlu&#8482; Mesh</a>
+      <a href="index.html">X-Series Install Manual</a>
+      <a href="https://mwconnect.us/contact">Contact</a>
+    </nav>
+    <span class="header-badge">HVAC Partner Documentation</span>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<div class="doc-hero">
+  <h1>TruBlu&#8482; Thermostat<br>Commissioning Guide</h1>
+  <p class="subtitle">Integrating a Thermostat with TruBlu&#8482; Bluetooth Mesh Networks</p>
+  <p class="meta">Application Note &nbsp;&middot;&nbsp; AN-232 rev.&nbsp;1.0 &nbsp;&middot;&nbsp; December 2025</p>
+</div>
+
+<!-- ── LAYOUT ───────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc-sidebar">
+    <h2>Contents</h2>
+    <nav id="toc-nav">
+      <a href="#legal">Legal Notice</a>
+      <a href="#s1">1. Introduction</a>
+      <a href="#s2">2. Overview</a>
+      <a class="toc-sub" href="#s2-1">2.1 Data Processing &amp; Control</a>
+      <a class="toc-sub" href="#s2-2">2.2 Supported Hardware</a>
+      <a class="toc-sub" href="#s2-3">2.3 Communication Model</a>
+      <a href="#s3">3. Commissioning Thermostats</a>
+      <a class="toc-sub" href="#s3-1">3.1 Creating Thermostat Zones</a>
+      <a class="toc-sub" href="#s3-2">3.2 Linking Thermostat Zones</a>
+      <a class="toc-sub" href="#s3-3">3.3 Adding Thermostats to Zones</a>
+      <a class="toc-sub" href="#s3-4">3.4 Configuring Occupancy Timers</a>
+      <a href="#s4">4. Document Revisions</a>
+      <a href="#contact">Contact Information</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- LEGAL NOTICE -->
+    <section class="section" id="legal">
+      <h2>Legal Notice &amp; Disclaimer</h2>
+      <div class="disclaimer">
+        <p>The information provided in this document is provided &#8220;AS-IS.&#8221; mwConnect specifically disclaims any and all express, implied, or statutory warranties, including the implied warranties of fitness for a particular purpose and of merchantability. No person is authorized to make any warranty or representation on behalf of mwConnect concerning the performance of the described products or information.</p>
+        <p>The user of this document assumes all responsibility and liability for proper and safe handling of the equipment described herein. Further, the user indemnifies mwConnect from all claims arising from the handling or use of the goods and services. It is the user&#8217;s responsibility to take all appropriate precautions with regard to electrostatic discharge and any other technical or safety concerns. Personnel installing or operating this equipment must have appropriate electronics or HVAC training and observe good engineering practice.</p>
+        <p>Except as expressly indicated in writing, mwConnect products and services are not designed for use in medical, life-saving, or life-sustaining applications, or for any other application in which failure of the product could result in personal injury or death. The information in this document may not be used contrary to applicable law or for any purpose other than the building automation and lighting control solution described herein.</p>
+        <p>To the maximum extent permitted by applicable law, mwConnect shall not be responsible or liable for any direct, indirect, special, incidental, punitive, or consequential damages, including but not limited to loss of revenues, loss of profits, or loss or inaccuracy of data, even if advised of the possibility of such damages. mwConnect&#8217;s cumulative liability for any and all damages is limited to the amounts paid to mwConnect by the user in the last 12 months for the particular products and/or services with respect to which a claim is made.</p>
+        <p>The parameters provided in this document may vary over time. All operating parameters must be validated by each customer&#8217;s technical experts. Except as expressly indicated in writing, no license, express or implied, to any intellectual property rights is granted by this document. mwConnect reserves the right to make changes to the information in this document or to any products and services at any time without notice.</p>
+        <p>Product names and markings noted herein may be trademarks of their respective owners. Bluetooth&#174; is a registered trademark of Bluetooth SIG, Inc. TruBlu&#8482; and mwLink&#8482; are trademarks of mwConnect.</p>
+      </div>
+    </section>
+
+    <!-- 1. INTRODUCTION -->
+    <section class="section" id="s1">
+      <h2>1. Introduction</h2>
+      <p>The Bluetooth&#174; NLC HVAC Integration profile enables HVAC systems to use real-time occupancy and environmental data from lighting networks.</p>
+      <p>This application note explains how to integrate a thermostat with TruBlu&#8482; Bluetooth mesh networks so HVAC equipment can respond to occupancy data from the lighting network &#8212; no extra sensors required. It outlines the architecture, configuration steps, and design considerations for thermostat OEMs, system integrators, and facility managers.</p>
+    </section>
+
+    <!-- 2. OVERVIEW -->
+    <section class="section" id="s2">
+      <h2>2. Overview</h2>
+      <p>The core of HVAC integration with TruBlu&#8482; lighting networks is the thermostat, which connects Bluetooth NLC lighting networks with HVAC systems. It allows HVAC systems to respond to real-time occupancy data from motion or occupancy sensors already installed in the lighting network.</p>
+
+      <h3 id="s2-1">2.1 &nbsp;Data Processing and Control</h3>
+      <p>The thermostat collects occupancy data from sensors in the Bluetooth mesh network and processes it to make control decisions. It interprets multiple occupancy data types, including presence detection, motion sensing, and people counting.</p>
+
+      <h3 id="s2-2">2.2 &nbsp;Supported Hardware</h3>
+      <p>The following TruBlu&#8482; Bluetooth NLC thermostats are supported:</p>
+      <ul>
+        <li><strong>TruBlu&#8482; X7</strong> &#8212; Wi-Fi thermostat</li>
+        <li><strong>TruBlu&#8482; X7</strong> &#8212; Wi-Fi thermostat with CO&#8322; sensor</li>
+        <li><strong>TruBlu&#8482; X7C</strong> &#8212; Ethernet thermostat with CO&#8322; sensor</li>
+      </ul>
+
+      <h3 id="s2-3">2.3 &nbsp;Communication Model</h3>
+      <p>The thermostat uses the Bluetooth Mesh Sensor Client model. It subscribes to sensor status messages published in the mesh and aggregates data from multiple sensors to drive HVAC control. This approach ensures reliable access to real-time environmental data.</p>
+    </section>
+
+    <!-- 3. COMMISSIONING THERMOSTATS -->
+    <section class="section" id="s3">
+      <h2>3. Commissioning Thermostats</h2>
+
+      <h3 id="s3-1">3.1 &nbsp;Creating Thermostat Zones</h3>
+
+      <div class="step-panel">
+        <div class="step-panel-title">TruBlu Web App</div>
+        <div class="step-panel-body">
+          <ol>
+            <li>Define lighting zones based on your project requirements. Make sure each zone from which you want to control HVAC contains at least one motion or occupancy sensor (<strong>occupancy zones</strong>).
+              <div class="callout info" style="margin:8px 0 4px;">
+                <span class="callout-icon">&#8505;</span>
+                <div><strong>Note:</strong> All zones that will control HVAC must use a profile based on: <strong>Occupancy sensing</strong>, <strong>Occupancy sensing with daylight harvesting</strong>, <strong>Vacancy sensing</strong>, or <strong>Vacancy sensing with daylight harvesting</strong>.</div>
+              </div>
+            </li>
+            <li>In the <strong>TruBlu&#8482; web app</strong>, open the project and area.</li>
+            <li>Click on the floor or site plan to create a zone containing only a thermostat (<strong>thermostat zone</strong>).</li>
+            <div class="sc-inline">
+              <img src="images/sn232/page05_img04_29.png" alt="Zone name and profile form" />
+            </div>
+            <li>Enter a name for the zone.</li>
+            <li>From the <strong>Profile</strong> list, select a control profile based on the <strong>Occupancy sensing</strong> scenario.</li>
+          </ol>
+          <div class="clearfix"></div>
+          <div class="sc-grid">
+            <img src="images/sn232/page05_img03_28.jpeg" alt="Floor plan showing thermostat zone placement" />
+            <img src="images/sn232/page05_img05_31.jpeg" alt="Profile list options" />
+          </div>
+          <ol start="6">
+            <li>Click <strong>Close</strong>.</li>
+            <li>Repeat steps 3&#8211;6 for other thermostat zones in this area.</li>
+            <li>Go to the other areas with thermostat zones and repeat steps 3&#8211;7.</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3 id="s3-2">3.2 &nbsp;Linking Thermostat Zones with Occupancy Zones</h3>
+
+      <div class="step-panel">
+        <div class="step-panel-title">TruBlu Web App</div>
+        <div class="step-panel-body">
+          <ol>
+            <li>In the <strong>TruBlu&#8482; web app</strong>, open the project and then an area.</li>
+            <li>Click <strong>Zone linking</strong>.</li>
+            <li>Select a thermostat zone.</li>
+            <li>In <strong>Controlled by presence in</strong>, add the occupancy zones that will activate the HVAC.</li>
+            <li>Click <strong>Save</strong>.</li>
+            <li>Repeat steps 2&#8211;5 for the other thermostat zones in this area and link each of them with its corresponding occupancy zones.</li>
+            <li>Go to the other areas that contain thermostat zones and repeat steps 2&#8211;6.</li>
+          </ol>
+          <div class="sc-single">
+            <img src="images/sn232/page06_img02_35.jpeg" alt="TruBlu web app - Zone linking panel" />
+          </div>
+        </div>
+      </div>
+
+      <div class="callout result">
+        <span class="callout-icon">&#10003;</span>
+        <div><strong>Result:</strong> When any sensor in a linked occupancy zone reports occupancy, the associated thermostat activates the HVAC system.</div>
+      </div>
+
+      <h3 id="s3-3">3.3 &nbsp;Adding Thermostats to the Zones</h3>
+
+      <div class="step-panel">
+        <div class="step-panel-title">On-Site &#8212; TruBlu Mobile App</div>
+        <div class="step-panel-body">
+          <ol>
+            <li>Go on site to a thermostat zone.</li>
+            <li>In the <strong>TruBlu&#8482; mobile app</strong>, open the project, area, and zone.</li>
+            <li>Add the thermostat to the zone.</li>
+            <li>Repeat steps 1&#8211;3 for all thermostat zones.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+      <h3 id="s3-4">3.4 &nbsp;Configuring Occupancy Timers on Thermostat</h3>
+
+      <div class="step-panel">
+        <div class="step-panel-title">On Thermostat &#8212; Installer Menu</div>
+        <div class="step-panel-body">
+          <ol>
+            <li>Access the Installer Menu: press and hold the Menu button (three-line icon, lower-left) for about 5 seconds.
+              <div class="callout info" style="margin:8px 0 4px;">
+                <span class="callout-icon">&#8505;</span>
+                <div><strong>Expected screen:</strong> The display changes to <em>Installer</em> followed by a version number.</div>
+              </div>
+            </li>
+            <li>Navigate using the arrow next to the checkmark until <strong>Occupancy Input</strong> is shown.</li>
+            <li>Set <strong>Occupancy Input</strong> to <strong>Occupancy Module</strong> using the +/&#8722; buttons, then tap the checkmark.</li>
+            <li>In the Occupancy sub-menu, configure the timer parameters listed below.
+              <table style="margin:12px 0;">
+                <thead>
+                  <tr><th>Parameter</th><th>Menu Name</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>OPTT</strong></td><td>Verify Occ Delay</td><td>Set the initial &#8220;soak&#8221; delay for the first motion event.</td></tr>
+                  <tr><td><strong>OMRT</strong></td><td>Min Occ Time</td><td>Set the minimum guaranteed occupied duration.</td></tr>
+                  <tr><td><strong>OATT</strong></td><td>Unocc Delay</td><td>Set the countdown period after motion stops before declaring unoccupied.</td></tr>
+                </tbody>
+              </table>
+            </li>
+            <li>After setting <strong>Unocc Delay</strong>, continue to <strong>Exit Menu</strong>.</li>
+            <li>Tap the checkmark to save changes and return to the main thermostat screen.</li>
+          </ol>
+          <div class="callout note" style="margin-top:12px;">
+            <span class="callout-icon">&#128161;</span>
+            <div><strong>Logic note:</strong> If OMRT is set lower than OATT, occupied behavior effectively follows OATT after motion is detected. For a guaranteed minimum run period regardless of motion drop-off, set OMRT higher than OATT.</div>
+          </div>
+        </div>
+      </div>
+
+    <!-- 4. DOCUMENT REVISIONS -->
+    <section class="section" id="s4">
+      <h2>4. Document Revisions</h2>
+      <table>
+        <thead>
+          <tr><th>Revision</th><th>Date</th><th>Editor</th><th>Changes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center;"><strong>1.0</strong></td>
+            <td>4 December 2025</td>
+            <td>GM</td>
+            <td>Initial revision. Adapted from Silvair SN-232 rev. 1.0 for mwConnect / TruBlu&#8482; branding.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CONTACT INFORMATION -->
+    <section class="section" id="contact">
+      <h2>Contact Information</h2>
+      <table>
+        <tbody>
+          <tr><td class="td-label">Technical Support</td><td>support@mwconnect.us</td></tr>
+          <tr><td class="td-label">Business Development</td><td>sales@mwconnect.us</td></tr>
+          <tr><td class="td-label">Website</td><td><a href="https://www.mwconnect.us" style="color:var(--dark-red);">www.mwconnect.us</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-logo">
+      <img src="images/logo.png" alt="mwConnect" />
+    </div>
+    <div>
+      <h4>mwConnect</h4>
+      <a href="https://mwconnect.us">mwconnect.us</a>
+      <a href="https://mwconnect.us/solutions/trublu-mesh/">TruBlu&#8482; Mesh</a>
+      <a href="https://mwconnect.us/contact">Contact Us</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="index.html">X-Series Installation Manual</a>
+      <a href="commissioning-guide.html">Thermostat Commissioning Guide</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&#169; 2026 <span class="mwc">mwConnect</span>. All rights reserved.</span>
+    <span>AN-232 rev. 1.0 &nbsp;&middot;&nbsp; December 2025</span>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var sections = document.querySelectorAll('.section[id]');
+    var links = document.querySelectorAll('#toc-nav a');
+    function setActive() {
+      var scrollY = window.scrollY + 80;
+      var current = '';
+      sections.forEach(function(s) { if (s.offsetTop <= scrollY) current = s.id; });
+      links.forEach(function(a) {
+        var href = a.getAttribute('href');
+        a.classList.toggle('active', href === '#' + current);
+      });
+    }
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  })();
+</script>
+
+</body>
+</html>
