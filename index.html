@@ -666,6 +666,44 @@
         <li><strong>Time set via NTP (Network Time Protocol):</strong> When the power is restored and the thermostat connects to the internet, it will resume normal programmed operation.</li>
         <li><strong>Time set manually:</strong> When power is restored, the clock will flash 12:00 and will operate in Manual Mode until the time is set. After the time has been set, the thermostat will resume normal programmed operation.</li>
       </ul>
+
+      <h3>Occupancy Control</h3>
+      <p>Occupancy control settings are available on the <strong>Sensor Settings</strong> web page and via the Installer Menu. These settings define how the thermostat responds to occupancy input on the CLK1/CLK2 terminals.</p>
+      <table class="terminal-table">
+        <thead>
+          <tr><th>Setting</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Occupancy Input</strong></td>
+            <td>Set to <em>Disabled</em> to ignore occupancy input, or <em>Terminal</em> to enable sensing via the CLK1/CLK2 terminals.</td>
+          </tr>
+          <tr>
+            <td><strong>Soft Setback</strong></td>
+            <td>When On, raises the cool setpoint and lowers the heat setpoint by the Setpoint Offset when the space is unoccupied during a scheduled occupied period. Setpoints return to the scheduled values when occupancy is detected.</td>
+          </tr>
+          <tr>
+            <td><strong>Occupied Recovery</strong></td>
+            <td>Controls thermostat response when occupancy is detected during an unoccupied schedule. <em>Soft Recovery</em>: returns to last occupied setpoints adjusted by the Setpoint Offset. <em>Full Recovery</em>: fully returns to the last occupied setpoints. In both cases, the thermostat reverts to the unoccupied schedule when the sensor clears.</td>
+          </tr>
+          <tr>
+            <td><strong>Setpoint Offset</strong></td>
+            <td>Number of degrees by which Soft Setback and Soft Recovery adjust the setpoints. Only visible when Soft Setback is On or Occupied Recovery is set to Soft Recovery.</td>
+          </tr>
+          <tr>
+            <td><strong>Verify Occupancy</strong></td>
+            <td>Time the sensor must continuously detect an occupant before the thermostat begins an occupied state.</td>
+          </tr>
+          <tr>
+            <td><strong>Minimum Occupied</strong></td>
+            <td>Minimum duration of the occupied state once it is triggered.</td>
+          </tr>
+          <tr>
+            <td><strong>Verified UnOccupancy</strong></td>
+            <td>Time the sensor must report no occupancy before the thermostat returns to an unoccupied state.</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="section" id="remote-sensors">
@@ -675,6 +713,44 @@
 
       <h3>RS1 &#8211; RS2 &#8211; RS+V: Remote Sensor Bus</h3>
       <p>Used for connection of a wide variety of remote sensors, allowing installation flexibility and additional information from the communications bus. It also allows the thermostat to be placed in an area away from view.</p>
+
+      <h3>Sensor Types</h3>
+      <p>The following sensor types are supported and configured by name on the <strong>Sensor Settings</strong> web page of the thermostat. Click <strong>UPDATE</strong> to apply changes.</p>
+      <table class="terminal-table">
+        <thead>
+          <tr><th>Sensor</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>INDOOR</strong></td>
+            <td>Remote indoor temperature sensor (model NT-Room-S). Up to 6 sensors may be installed; the thermostat displays the average of all readings. Use the HVAC Settings web page to include or exclude the internal sensor from the averaged calculation.</td>
+          </tr>
+          <tr>
+            <td><strong>OUTDOOR</strong></td>
+            <td>Local outdoor temperature sensor. When the <em>Enable Sensor</em> checkbox is unchecked, the outdoor reading defaults to the current weather data. Check <em>Enable Sensor</em> to use the wired remote sensor.</td>
+          </tr>
+          <tr>
+            <td><strong>HUMIDITY</strong></td>
+            <td>Indoor humidity sensor. When the <em>Enable Sensor</em> checkbox is unchecked, the humidity reading defaults to weather data. Check <em>Enable Sensor</em> to use the wired remote sensor.</td>
+          </tr>
+          <tr>
+            <td><strong>AUX 1</strong></td>
+            <td>Auxiliary temperature sensor for any air temperature measurement and alerting (requires appropriate probe).</td>
+          </tr>
+          <tr>
+            <td><strong>AUX 2</strong></td>
+            <td>Auxiliary temperature sensor for any air temperature measurement and alerting (requires appropriate probe).</td>
+          </tr>
+          <tr>
+            <td><strong>AUX 3</strong></td>
+            <td>Auxiliary sensor configurable for air temperature <em>or</em> water temperature measurement and alerting.</td>
+          </tr>
+          <tr>
+            <td><strong>WATER</strong></td>
+            <td>Water leak sensor. Enable the <em>Turn System Off</em> option to automatically shut down the HVAC system when a water leak is detected.</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h3>Remote Sensor Averaging</h3>
       <p>If remote temperature sensors are connected, the thermostat can either use the remote sensors (default) or average the remote sensor and the internal temperature sensor. The Remote Sensor Averaging setting can be accessed from the HVAC Settings web page of the thermostat.</p>
@@ -802,7 +878,7 @@
       <p>This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential installation. This equipment generates, uses, and can radiate radio frequency energy, and if not installed and used in accordance with the instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged to try to correct the interference by one or more of the following measures:</p>
       <ul>
         <li>Reorient or relocate the receiving antenna</li>
-        <li>Increase the separation between the equipment and the receiver</li>
+        <li>Increase the separation between the equipment and receiver</li>
         <li>Connect the equipment to an outlet on a circuit different from that to which the receiver is connected</li>
         <li>Consult the dealer or an experienced radio/TV technician for help</li>
       </ul>

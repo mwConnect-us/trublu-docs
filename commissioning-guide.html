@@ -277,6 +277,7 @@
       <a class="toc-sub" href="#s3-2">3.2 Linking Thermostat Zones</a>
       <a class="toc-sub" href="#s3-3">3.3 Adding Thermostats to Zones</a>
       <a class="toc-sub" href="#s3-4">3.4 Configuring Occupancy Timers</a>
+      <a class="toc-sub" href="#s3-5">3.5 Occupancy Control Web Settings</a>
       <a href="#s4">4. Document Revisions</a>
       <a href="#contact">Contact Information</a>
     </nav>
@@ -435,6 +436,57 @@
             <span class="callout-icon">&#128161;</span>
             <div><strong>Logic note:</strong> If OMRT is set lower than OATT, occupied behavior effectively follows OATT after motion is detected. For a guaranteed minimum run period regardless of motion drop-off, set OMRT higher than OATT.</div>
           </div>
+        </div>
+      </div>
+
+      <h3 id="s3-5">3.5 &nbsp;Occupancy Control Web Settings</h3>
+
+      <div class="step-panel">
+        <div class="step-panel-title">Web Interface &#8212; Sensor Settings Page</div>
+        <div class="step-panel-body">
+          <p>After initial configuration via the Installer Menu, fine-tune occupancy behavior using the <strong>Sensor Settings</strong> web page accessible via the thermostat&#8217;s built-in web server (DirectConnect) or cloud interface. These settings correspond to the Installer Menu parameters in section 3.4.</p>
+          <table style="margin:12px 0;">
+            <thead>
+              <tr><th>Setting</th><th>Options</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Occupancy Input</strong></td>
+                <td>Disabled / Terminal</td>
+                <td>Set to <em>Terminal</em> to activate occupancy sensing via the CLK1/CLK2 terminals used by the TruBlu&#8482; occupancy module.</td>
+              </tr>
+              <tr>
+                <td><strong>Soft Setback</strong></td>
+                <td>On / Off</td>
+                <td>When On, raises the cool setpoint and lowers the heat setpoint by the Setpoint Offset when the space is unoccupied during a scheduled occupied period. Setpoints return to normal when occupancy is detected.</td>
+              </tr>
+              <tr>
+                <td><strong>Occupied Recovery</strong></td>
+                <td>Soft Recovery / Full Recovery</td>
+                <td><em>Soft Recovery:</em> when occupancy is detected during an unoccupied schedule, setpoints return to the last occupied values adjusted by the Setpoint Offset. <em>Full Recovery:</em> setpoints fully return to the last occupied values. In both cases the thermostat reverts to the unoccupied schedule when the sensor clears.</td>
+              </tr>
+              <tr>
+                <td><strong>Setpoint Offset</strong></td>
+                <td>&#176;F / &#176;C</td>
+                <td>Degrees by which Soft Setback and Soft Recovery adjust the setpoints. Only visible when Soft Setback is On or Occupied Recovery is set to Soft Recovery.</td>
+              </tr>
+              <tr>
+                <td><strong>Verify Occupancy</strong></td>
+                <td>Time</td>
+                <td>How long the sensor must continuously detect occupancy before the thermostat begins an occupied state. Corresponds to <strong>OPTT</strong> (Verify Occ Delay) in the Installer Menu.</td>
+              </tr>
+              <tr>
+                <td><strong>Minimum Occupied</strong></td>
+                <td>Time</td>
+                <td>Minimum occupied state duration once triggered. Corresponds to <strong>OMRT</strong> (Min Occ Time) in the Installer Menu.</td>
+              </tr>
+              <tr>
+                <td><strong>Verified UnOccupancy</strong></td>
+                <td>Time</td>
+                <td>How long no occupancy must be detected before the thermostat returns to an unoccupied state. Corresponds to <strong>OATT</strong> (Unocc Delay) in the Installer Menu.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
