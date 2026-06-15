@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casambi vs. Silvair / TruBlu — Competitive Analysis | mwConnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-red:   #9B3020;
+      --warm-red:   #DF5433;
+      --near-black: #111111;
+      --charcoal:   #333333;
+      --mid-gray:   #666666;
+      --light-gray: #F2F2F2;
+      --white:      #FFFFFF;
+      --border:     #e0e0e0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--charcoal);
+      background: var(--white);
+    }
+
+    /* ─── Site Header ─────────────────────────────────────── */
+    .site-header {
+      background: var(--white);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .site-header .logo { display: flex; align-items: center; text-decoration: none; gap: 10px; }
+    .logo-mark {
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-wordmark { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-wordmark .mw { font-size: 13px; font-weight: 700; color: var(--dark-red); letter-spacing: 0.5px; }
+    .logo-wordmark .connect { font-size: 13px; font-weight: 600; color: var(--warm-red); letter-spacing: 0.5px; }
+    .header-badge {
+      background: var(--light-gray);
+      color: var(--dark-red);
+      font-size: 11px; font-weight: 600;
+      padding: 4px 12px; border-radius: 20px;
+      border: 1px solid #ddd; letter-spacing: 0.3px;
+    }
+
+    /* ─── Hero ────────────────────────────────────────────── */
+    .doc-hero {
+      background: linear-gradient(135deg, var(--dark-red) 0%, var(--warm-red) 100%);
+      color: white;
+      padding: 56px 40px 48px;
+    }
+    .doc-hero .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; opacity: 0.75; margin-bottom: 10px;
+    }
+    .doc-hero h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .doc-hero .subtitle { font-size: 15px; opacity: 0.85; font-weight: 300; max-width: 620px; }
+    .doc-hero .meta { margin-top: 18px; font-size: 12px; opacity: 0.6; display: flex; gap: 24px; flex-wrap: wrap; }
+
+    /* ─── Layout ──────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ─── Sidebar ─────────────────────────────────────────── */
+    .toc-sidebar {
+      position: sticky;
+      top: 64px;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+      background: var(--light-gray);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .toc-sidebar h2 {
+      font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--mid-gray); padding: 0 20px 12px;
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
+    }
+    .toc-sidebar nav a {
+      display: block; padding: 7px 20px; font-size: 13px;
+      color: var(--charcoal); text-decoration: none;
+      border-left: 3px solid transparent; transition: all 0.15s;
+    }
+    .toc-sidebar nav a:hover { background: white; border-left-color: var(--warm-red); color: var(--dark-red); }
+    .toc-sidebar nav a.active { background: white; border-left-color: var(--dark-red); color: var(--dark-red); font-weight: 500; }
+
+    /* ─── Main Content ────────────────────────────────────── */
+    .main-content { padding: 48px 56px; max-width: 900px; }
+
+    /* ─── Exec Summary ────────────────────────────────────── */
+    .exec-summary {
+      background: #fde8e4;
+      border-left: 4px solid var(--dark-red);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      font-size: 15px;
+    }
+    .exec-summary strong { color: var(--dark-red); }
+
+    /* ─── Sections ────────────────────────────────────────── */
+    .section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .section > h2 {
+      font-size: 20px; font-weight: 600; color: var(--dark-red);
+      border-bottom: 2px solid var(--warm-red);
+      padding-bottom: 8px; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-num {
+      background: var(--dark-red); color: white;
+      font-size: 11px; font-weight: 700;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section h3 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin: 24px 0 10px; }
+    .section p { margin-bottom: 14px; }
+    .section ul, .section ol { margin: 10px 0 14px 24px; }
+    .section li { margin-bottom: 6px; }
+
+    /* ─── Callout Boxes ───────────────────────────────────── */
+    .callout {
+      border-radius: 6px; padding: 12px 16px; margin: 16px 0;
+      font-size: 14px; display: flex; gap: 10px;
+    }
+    .callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+    .callout.win    { background: #e8f5e9; border-left: 4px solid #43a047; color: #1b5e20; }
+    .callout.warn   { background: #fff3cd; border-left: 4px solid #f0a500; color: #664d03; }
+    .callout.note   { background: #fde8e4; border-left: 4px solid var(--warm-red); color: #7f1d10; }
+    .callout.info   { background: #e3f2fd; border-left: 4px solid #1976d2; color: #0d47a1; }
+
+    /* ─── Tables ──────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    thead th {
+      background: var(--dark-red); color: white;
+      padding: 9px 12px; text-align: left; font-weight: 500;
+      white-space: nowrap;
+    }
+    thead th:first-child { border-radius: 4px 0 0 0; }
+    thead th:last-child  { border-radius: 0 4px 0 0; }
+    tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tbody tr:nth-child(even) td { background: #fafafa; }
+    tbody tr:hover td { background: #fdf3f1; }
+
+    /* winner/loser cell styling */
+    .win-cell  { color: #1b5e20; font-weight: 600; }
+    .loss-cell { color: var(--mid-gray); }
+    .tie-cell  { color: #5d4037; }
+
+    /* star ratings */
+    .stars { letter-spacing: 2px; font-size: 13px; }
+    .stars .filled { color: var(--warm-red); }
+    .stars .empty  { color: #ccc; }
+
+    /* ─── Score Card ──────────────────────────────────────── */
+    .scorecard-winner {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 10px;
+    }
+    .sw-silvair { background: #fde8e4; color: var(--dark-red); border: 1px solid #f5b8a8; }
+    .sw-casambi { background: #e8f5e9; color: #1b5e20; border: 1px solid #a5d6a7; }
+    .sw-tie     { background: var(--light-gray); color: var(--charcoal); border: 1px solid #ccc; }
+
+    /* ─── Objections Table ────────────────────────────────── */
+    .obj-table td:first-child { font-style: italic; color: var(--mid-gray); width: 38%; }
+    .obj-table td:last-child  { color: var(--charcoal); }
+
+    /* ─── Positioning Boxes ───────────────────────────────── */
+    .pos-box {
+      border-radius: 8px; padding: 20px 24px; margin-bottom: 16px;
+    }
+    .pos-box.win-box  { background: #fde8e4; border-left: 5px solid var(--dark-red); }
+    .pos-box.lose-box { background: #f5f5f5; border-left: 5px solid #aaa; }
+    .pos-box h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .pos-box.win-box  h3 { color: var(--dark-red); }
+    .pos-box.lose-box h3 { color: var(--charcoal); }
+    .pos-box ol { margin-left: 18px; }
+    .pos-box li { margin-bottom: 6px; font-size: 14px; }
+
+    /* ─── Architecture Diagram ────────────────────────────── */
+    .arch-diagram {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .arch-flow {
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+    }
+    .arch-step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-weight: 500;
+      font-size: 13px;
+      color: var(--charcoal);
+      text-align: center;
+      min-width: 280px;
+    }
+    .arch-step.highlight {
+      background: var(--dark-red); color: white;
+      border-color: var(--dark-red);
+    }
+    .arch-arrow {
+      font-size: 18px; color: var(--warm-red); margin: 4px 0;
+    }
+
+    /* ─── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      background: var(--near-black);
+      color: #aaa;
+      text-align: center;
+      padding: 28px 40px;
+      font-size: 12px;
+      margin-top: 60px;
+    }
+    .site-footer strong { color: white; }
+    .site-footer a { color: #aaa; text-decoration: none; }
+    .site-footer a:hover { color: var(--warm-red); }
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc-sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+      .main-content { padding: 32px 24px; max-width: 100%; }
+      .site-header { padding: 0 20px; }
+      .doc-hero { padding: 36px 24px; }
+      .doc-hero h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ──────────────────────────────────────────── -->
+<header class="site-header">
+  <a class="logo" href="https://mwconnect.us" target="_blank" rel="noopener">
+    <div class="logo-mark">
+      <!-- Inline SVG monogram: stacked M shapes in brand reds -->
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="mwConnect monogram">
+        <polygon points="2,28 9,8 18,22 27,8 34,28 30,28 27,18 18,30 9,18 6,28" fill="#9B3020"/>
+        <polygon points="2,34 9,14 18,28 27,14 34,34 30,34 27,24 18,36 9,24 6,34" fill="#DF5433" opacity="0.85"/>
+      </svg>
+    </div>
+    <div class="logo-wordmark">
+      <span class="mw">mw</span><span class="connect">Connect</span>
+    </div>
+  </a>
+  <span class="header-badge">Sales Reference — Internal</span>
+</header>
+
+<!-- ─── Hero ────────────────────────────────────────────── -->
+<div class="doc-hero">
+  <div class="eyebrow">Competitive Analysis</div>
+  <h1>Casambi vs. Silvair / TruBlu™</h1>
+  <p class="subtitle">A thorough technical and commercial comparison to help the mwConnect sales team confidently position TruBlu in any conversation.</p>
+  <div class="meta">
+    <span>Prepared for: mwConnect Sales &amp; Engineering</span>
+    <span>June 2026</span>
+    <span>Classification: Internal — Sales Reference</span>
+  </div>
+</div>
+
+<!-- ─── Body ─────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- Sidebar TOC -->
+  <aside class="toc-sidebar">
+    <h2>Contents</h2>
+    <nav>
+      <a href="#exec-summary">Executive Summary</a>
+      <a href="#s1">1. Company Overview</a>
+      <a href="#s2">2. Core Technology: Mesh Protocol</a>
+      <a href="#s3">3. BMS / BACnet Integration</a>
+      <a href="#s4">4. Commissioning Tools</a>
+      <a href="#s5">5. Features &amp; Control</a>
+      <a href="#s6">6. Hardware Ecosystem</a>
+      <a href="#s7">7. Connected Services &amp; Pricing</a>
+      <a href="#s8">8. Standards &amp; Certifications</a>
+      <a href="#s9">9. Target Market Fit</a>
+      <a href="#s10">10. TruBlu Edge Platform</a>
+      <a href="#s11">11. Weaknesses of TruBlu</a>
+      <a href="#s12">12. Sales Objections &amp; Responses</a>
+      <a href="#s13">13. Summary Scorecard</a>
+      <a href="#s14">14. Recommended Positioning</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Executive Summary -->
+    <div id="exec-summary" class="exec-summary" style="scroll-margin-top:80px;">
+      <strong>Bottom line:</strong> Silvair/TruBlu is the stronger choice for enterprise commercial buildings that require BMS integration, open-standards compliance, and verified BACnet interoperability. Casambi is stronger for hospitality, retail, arts, and buildings where ease of use for non-technical staff and rich consumer UX are the priority. Where mwConnect competes, the BTL-certified BACnet gateway, Bluetooth NLC certification, DLC NLC5 compliance, and HVAC integration are meaningful differentiators Casambi cannot match today.
+    </div>
+
+    <!-- 1. Company Overview -->
+    <section class="section" id="s1">
+      <h2><span class="section-num">1</span>Company Overview</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Headquarters</strong></td><td>Kraków, Poland</td><td>Helsinki, Finland</td></tr>
+            <tr><td><strong>Founded</strong></td><td>2016</td><td>2012</td></tr>
+            <tr><td><strong>Business model</strong></td><td>B2B firmware/platform licensor; white-label friendly (TruBlu™ is an example)</td><td>Ecosystem platform; sells to specifiers, installers, and manufacturers</td></tr>
+            <tr><td><strong>Market position</strong></td><td>Commercial/enterprise BMS-focused, open-standards driven</td><td>Broad (residential to large commercial), UX/ecosystem-focused</td></tr>
+            <tr><td><strong>Installed base</strong></td><td>~1 million devices managed (April 2026)</td><td>8 million+ products sold; 250,000+ projects</td></tr>
+            <tr><td><strong>Partner manufacturers</strong></td><td>~30+ listed on silvair.com/products</td><td>Hundreds of luminaire &amp; component manufacturers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Takeaway:</strong> Casambi has a much larger installed base. Silvair is smaller but deeply focused on commercial/enterprise BMS interoperability. TruBlu benefits from Silvair's B2B licensing model — allowing mwConnect to brand the solution end-to-end.</p>
+    </section>
+
+    <!-- 2. Core Technology -->
+    <section class="section" id="s2">
+      <h2><span class="section-num">2</span>Core Technology: Mesh Protocol</h2>
+      <p>This is the single most important technical differentiator between the two platforms.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Protocol</strong></td><td class="win-cell">Bluetooth Mesh — Bluetooth SIG open standard (NLC profile)</td><td>Proprietary Casambi Mesh — built on BLE but NOT standard Bluetooth Mesh</td></tr>
+            <tr><td><strong>Standards body</strong></td><td class="win-cell">Bluetooth SIG — NLC is a ratified standard</td><td>No external standard; Casambi controls the protocol spec entirely</td></tr>
+            <tr><td><strong>Interoperability</strong></td><td class="win-cell">Any Bluetooth NLC-certified device is interoperable</td><td>Only "Casambi Ready" devices work; requires Casambi firmware in every node</td></tr>
+            <tr><td><strong>Mesh routing</strong></td><td>Managed flooding — Bluetooth Mesh model</td><td>Proprietary "high-throughput flooding protocol" — self-adapting algorithm</td></tr>
+            <tr><td><strong>No single point of failure</strong></td><td>Yes — distributed mesh</td><td>Yes — distributed mesh</td></tr>
+            <tr><td><strong>Self-healing</strong></td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>Offline operation</strong></td><td>Yes — mesh runs autonomously without internet</td><td>Yes — WPAN, no internet required</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Vendor lock-in risk with Casambi:</strong> Every node — luminaire, sensor, switch — must contain Casambi firmware. No third-party Bluetooth Mesh controller can join a Casambi network. Silvair NLC is an open Bluetooth SIG standard, allowing genuine multi-vendor flexibility.</div>
+      </div>
+    </section>
+
+    <!-- 3. BMS / BACnet -->
+    <section class="section" id="s3">
+      <h2><span class="section-num">3</span>BMS / BACnet Integration</h2>
+      <p>This is mwConnect's strongest competitive advantage.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair — TruBlu™ BACnet Gateway</th><th>Casambi — Lithernet (3rd party)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>BACnet/IP gateway</strong></td><td class="win-cell">Yes — SGW-104 (Minew G1-E), Silvair's own hardware</td><td>Partial — Lithernet by Licht Manufaktur Berlin GmbH; a 3rd-party partner accessory, not a Casambi product</td></tr>
+            <tr><td><strong>BTL certification</strong></td><td class="win-cell">Yes — BTL-certified (BACnet Testing Laboratories)</td><td class="loss-cell">No — not listed in BTL product database</td></tr>
+            <tr><td><strong>BACnet implementation depth</strong></td><td class="win-cell">Full BACnet device with 224 objects (AI, AO, BI, MSI, MSO, SV, DEV), published PICS</td><td>ASCII-based UDP bridge — BACnet/IP is one of ~6 protocols (also ArtNet, MQTT, HelvarNet); no published PICS</td></tr>
+            <tr><td><strong>Change of Value (CoV)</strong></td><td class="win-cell">Yes — real-time event-driven BMS updates</td><td class="loss-cell">Not documented</td></tr>
+            <tr><td><strong>Cloud dependency for BMS</strong></td><td class="win-cell">None — fully on-premise</td><td>None for basic control; Casambi's cloud API is internet-routed</td></tr>
+            <tr><td><strong>Priority array</strong></td><td class="win-cell">Yes — 16-level BACnet priority array (P1–P16)</td><td class="loss-cell">Not documented</td></tr>
+            <tr><td><strong>Max devices per gateway</strong></td><td>200 devices / 100 zones</td><td>Not specified</td></tr>
+            <tr><td><strong>North American availability</strong></td><td class="win-cell">Yes — distributed by mwConnect/TruBlu</td><td class="loss-cell">Unclear — Berlin-based manufacturer; no US distributor listed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout info">
+        <span class="callout-icon">ℹ️</span>
+        <div>The Lithernet is a legitimate product that does provide some BACnet/IP connectivity for Casambi networks. However, it is a third-party European accessory without BTL certification and without a full BACnet object model or PICS statement. Enterprise procurement typically requires BTL certification — this remains a meaningful differentiator for TruBlu.</div>
+      </div>
+      <div class="callout win">
+        <span class="callout-icon">💬</span>
+        <div><strong>Sales talking point:</strong> "Our TruBlu BACnet Gateway is BTL-certified and exposes a full BACnet object model — 224 objects that your Tridium, Siemens, JCI, or Schneider BMS can natively read and write. Casambi has a third-party European gateway that can speak some BACnet/IP, but it's not BTL-certified and doesn't expose a proper device object model. For enterprise BMS procurement that requires verified BACnet compliance, that difference matters."</div>
+      </div>
+    </section>
+
+    <!-- 4. Commissioning Tools -->
+    <section class="section" id="s4">
+      <h2><span class="section-num">4</span>Commissioning Tools</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mobile app</strong></td><td>Silvair App (iOS + Android) — provisioning, configuration, scheduling, scenes, daylight harvesting, occupancy tuning</td><td class="win-cell">Casambi App (iOS + Android) — free; full lighting control from day one; gesture-based UX</td></tr>
+            <tr><td><strong>Web portal</strong></td><td class="win-cell">Yes — platform.silvair.com; web-based commissioning, project config, energy/occupancy dashboards (requires internet)</td><td class="loss-cell">No dedicated web-based commissioning portal</td></tr>
+            <tr><td><strong>Professional planning tool</strong></td><td>Silvair web portal (browser-based; online only)</td><td class="win-cell">Casambi Pro — Windows PC + iPad; fully offline; pre-commissioning offsite, then upload via BLE</td></tr>
+            <tr><td><strong>Gallery / floor plan</strong></td><td class="loss-cell">Not available</td><td class="win-cell">Yes — upload space photos, mark luminaire positions, control visually</td></tr>
+            <tr><td><strong>Pre-commissioning offsite</strong></td><td>Limited — web portal requires connectivity</td><td class="win-cell">Yes — complete project offline before arriving on-site</td></tr>
+            <tr><td><strong>Firmware OTA updates</strong></td><td>Yes — OTA via app or cloud</td><td>Yes — OTA via cloud/app</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <span class="callout-icon">📋</span>
+        <div><strong>Assessment:</strong> Casambi Pro's fully offline pre-commissioning workflow is a real advantage on job sites with poor connectivity or for large repetitive-layout projects. Silvair's web portal is solid but requires internet. This is worth acknowledging in competitive proposals — it affects on-site labor time.</div>
+      </div>
+    </section>
+
+    <!-- 5. Features & Control -->
+    <section class="section" id="s5">
+      <h2><span class="section-num">5</span>Features &amp; Control Capabilities</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Capability</th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td>Zone dimming (group-level)</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Individual luminaire dimming</td><td>Yes (via app)</td><td>Yes</td></tr>
+            <tr><td>Color temperature (tunable white)</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>RGB color control</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Scenes (preset lighting states)</td><td>Yes (4 via BACnet; more via app)</td><td class="win-cell">Yes (unlimited)</td></tr>
+            <tr><td>Animations / dynamic scenes</td><td class="loss-cell">No</td><td class="win-cell">Yes — fade between scenes, set tempo, duration, cycles</td></tr>
+            <tr><td>Occupancy sensor integration</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Daylight harvesting</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Scheduling (time-based)</td><td>Yes (mesh-resident schedules)</td><td>Yes (calendar, timer, sunrise/sunset)</td></tr>
+            <tr><td>Sunrise/sunset auto-scheduling</td><td class="loss-cell">Not documented</td><td class="win-cell">Yes — calculates from timezone/location</td></tr>
+            <tr><td>Circadian / human-centric lighting</td><td>Via scheduling, not built-in</td><td class="win-cell">Yes — native tunable white circadian profiles</td></tr>
+            <tr><td>Emergency lighting testing</td><td class="win-cell">Yes — UL 924 compliance (SN-226)</td><td>Yes — wireless emergency lighting</td></tr>
+            <tr><td>Energy monitoring</td><td>Yes — zone energy (Wh), BACnet AI objects, API</td><td>Yes — in-app; D4i data via Salvador</td></tr>
+            <tr><td>Occupancy analytics/history</td><td>Yes — via Silvair API</td><td>Yes — via Cloud API</td></tr>
+            <tr><td>BACnet BMS integration</td><td class="win-cell">Yes — native gateway, BTL-certified</td><td class="loss-cell">3rd-party only, not BTL-certified</td></tr>
+            <tr><td>REST API for 3rd party integration</td><td class="win-cell">Yes — SN-221 Silvair API (REST + WebSocket)</td><td>Yes — Casambi Cloud API (beta)</td></tr>
+            <tr><td>HVAC Integration (NLC profile)</td><td class="win-cell">Yes — first qualified Bluetooth NLC HVAC (2025)</td><td class="loss-cell">No</td></tr>
+            <tr><td>DLC NLC5 compliance</td><td class="win-cell">Yes — multiple listed products</td><td class="loss-cell">Not documented</td></tr>
+            <tr><td>Matter protocol support</td><td class="loss-cell">Not documented</td><td>Participant member (in development)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 6. Hardware Ecosystem -->
+    <section class="section" id="s6">
+      <h2><span class="section-num">6</span>Hardware Ecosystem</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Luminaire manufacturers</strong></td><td>~30+ listed (Boke, Danlers, Fulham, Linmore, Maxlite, MeanWell, Sunricher, Hynall, Aleo…)</td><td class="win-cell">Hundreds of global manufacturers — broadest ecosystem</td></tr>
+            <tr><td><strong>USA-market products</strong></td><td class="win-cell">Aleo, Fulham, Maxlite, Linmore — all DLC NLC5 listed</td><td>Wide US presence; fewer explicit DLC NLC5 products</td></tr>
+            <tr><td><strong>Retrofit friendliness</strong></td><td>Good — Zhaga Book20 retrofit controls</td><td class="win-cell">Excellent — CBU modules convert any wired luminaire; no additional wiring</td></tr>
+            <tr><td><strong>Wired control options</strong></td><td>DALI/D4i products</td><td class="win-cell">DALI, DALI-2, D4i, 1-10V, PWM, phase-cut</td></tr>
+            <tr><td><strong>BACnet gateway</strong></td><td class="win-cell">SGW-104 (Minew G1-E) — BTL-certified hardware</td><td>Lithernet (3rd party, not BTL-certified)</td></tr>
+            <tr><td><strong>Bluetooth standard</strong></td><td>Bluetooth 5+ (NLC profile)</td><td>Bluetooth 5.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Ecosystem gap:</strong> Casambi's ecosystem is far larger by product count and manufacturer diversity — specifiers have more fixture choice. Silvair's ecosystem is smaller but focused on the commercial North American market with DLC NLC5-listed products, which matter for rebates.</p>
+    </section>
+
+    <!-- 7. Pricing -->
+    <section class="section" id="s7">
+      <h2><span class="section-num">7</span>Connected Services &amp; Pricing Model</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:200px"></th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Software licensing</strong></td><td>Subscription-based connected services (annual; 2026.1 USD pricing)</td><td class="win-cell">App is free to download; core features appear free</td></tr>
+            <tr><td><strong>Connected services</strong></td><td>Energy monitoring, occupancy analytics, API access — subscription-tiered</td><td>Cloud API (beta) — terms unclear</td></tr>
+            <tr><td><strong>API access</strong></td><td>Included in connected services subscription</td><td>Cloud API (beta) — access terms not published</td></tr>
+            <tr><td><strong>Training</strong></td><td>Silvair commissioning certification</td><td class="win-cell">Free training (online + classroom); 4C assessment</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn">
+        <span class="callout-icon">💡</span>
+        <div><strong>Note for sales:</strong> Silvair's subscription model for Connected Services creates ongoing revenue but can be a perceived cost barrier vs. Casambi's free basic platform. Be prepared to articulate the ROI — energy savings, rebate eligibility, BMS integration value — in proposals.</div>
+      </div>
+    </section>
+
+    <!-- 8. Standards & Certifications -->
+    <section class="section" id="s8">
+      <h2><span class="section-num">8</span>Standards &amp; Certifications</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Standard / Certification</th><th>Silvair (TruBlu™)</th><th>Casambi</th></tr></thead>
+          <tbody>
+            <tr><td>Bluetooth NLC (Networked Lighting Control)</td><td class="win-cell">✅ Yes — foundational product</td><td class="loss-cell">No — uses proprietary Casambi Mesh</td></tr>
+            <tr><td>BTL (BACnet Testing Laboratories)</td><td class="win-cell">✅ Yes — SGW-104 certified</td><td class="loss-cell">No (Lithernet 3rd-party gateway is not BTL-certified)</td></tr>
+            <tr><td>DLC NLC5 (DesignLights Consortium)</td><td class="win-cell">✅ Yes — multiple listed products</td><td class="loss-cell">Not documented</td></tr>
+            <tr><td>DALI / DALI-2 / D4i</td><td>Yes</td><td class="win-cell">Yes — full support + Salvador series</td></tr>
+            <tr><td>UL 924 Emergency Lighting</td><td class="win-cell">✅ Yes — SN-226 qualified</td><td>Wireless emergency lighting supported</td></tr>
+            <tr><td>EnOcean</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td>Phase-cut dimming</td><td>Not documented</td><td>Yes</td></tr>
+            <tr><td>Bluetooth 5.x</td><td>Yes (5+)</td><td>Yes (5.3)</td></tr>
+            <tr><td>Matter</td><td class="loss-cell">Not documented</td><td>Participant member (in development)</td></tr>
+            <tr><td>HVAC BLE NLC Profile</td><td class="win-cell">✅ Yes — first qualified solution (2025)</td><td class="loss-cell">No</td></tr>
+            <tr><td>ISO/ASHRAE BACnet standard</td><td class="win-cell">Yes (via BTL certification)</td><td class="loss-cell">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Standards story:</strong> Silvair's commitment to Bluetooth SIG open standards (NLC) and BTL-certified BACnet is a genuine enterprise differentiator. Many large-building owners and specification consultants require open, interchangeable standards — Silvair delivers this; Casambi's proprietary mesh does not.</p>
+    </section>
+
+    <!-- 9. Market Fit -->
+    <section class="section" id="s9">
+      <h2><span class="section-num">9</span>Target Market Fit</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Market Segment</th><th>Best Fit</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Enterprise commercial offices with BMS</td><td class="win-cell">Silvair / TruBlu™</td><td>BTL-certified BACnet gateway is the deciding factor</td></tr>
+            <tr><td>Healthcare / life-safety facilities</td><td class="win-cell">Silvair / TruBlu™</td><td>BTL certification, UL 924, no cloud dependency</td></tr>
+            <tr><td>Logistics / warehouses (DLC rebates)</td><td class="win-cell">Silvair / TruBlu™</td><td>DLC NLC5 products + energy monitoring</td></tr>
+            <tr><td>Education campuses (BMS required)</td><td class="win-cell">Silvair / TruBlu™</td><td>BACnet integration + DLC compliance</td></tr>
+            <tr><td>Hospitality / hotels / restaurants</td><td style="color:#1b5e20;font-weight:600;">Casambi</td><td>Richer scenes, animations, tunable white, simpler UX</td></tr>
+            <tr><td>Retail / showrooms / museums</td><td style="color:#1b5e20;font-weight:600;">Casambi</td><td>Color control, animations, gallery feature, easy retrofits</td></tr>
+            <tr><td>Residential / high-end residential</td><td style="color:#1b5e20;font-weight:600;">Casambi</td><td>Consumer-friendly app, Matter roadmap</td></tr>
+            <tr><td>Specifier-led commercial projects</td><td class="win-cell">Silvair / TruBlu™</td><td>Open standard, BACnet, DLC — easier to specify via standards compliance</td></tr>
+            <tr><td>HVAC integration (occupancy-based setpoints)</td><td class="win-cell">Silvair / TruBlu™</td><td>Only qualified Bluetooth NLC HVAC profile</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 10. TruBlu Edge -->
+    <section class="section" id="s10">
+      <h2><span class="section-num">10</span>Integration with TruBlu™ Edge Platform</h2>
+      <p>The TruBlu Edge architecture (deployed at McWong HQ) demonstrates a multi-layer capability Casambi cannot match:</p>
+      <div class="arch-diagram">
+        <div class="arch-flow">
+          <div class="arch-step highlight">Silvair Bluetooth NLC Mesh</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step">TruBlu Cloud Platform (WebSocket / CapnProto)</div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step">TruBlu Edge — Raspberry Pi</div>
+          <div class="arch-arrow">↓ ↓</div>
+          <div style="display:flex;gap:16px;">
+            <div class="arch-step" style="min-width:200px;">Modbus TCP → WiFi Thermostats</div>
+            <div class="arch-step highlight" style="min-width:200px;">BACnet Gateway → BMS</div>
+          </div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-step">mwLink REST API + Dashboard</div>
+        </div>
+      </div>
+      <p>This combination — occupancy data from the Silvair mesh, edge computing for HVAC setpoint logic, BTL-certified BACnet for BMS, and mwLink REST API for cloud dashboards — is a complete, differentiated building automation solution. Casambi has no equivalent multi-layer architecture, no BTL-certified BACnet gateway, and no HVAC NLC profile.</p>
+    </section>
+
+    <!-- 11. Weaknesses -->
+    <section class="section" id="s11">
+      <h2><span class="section-num">11</span>Weaknesses of Silvair / TruBlu™ vs. Casambi</h2>
+      <p>Being honest about where Casambi is stronger helps the sales team prepare for objections:</p>
+      <ol>
+        <li><strong>Ecosystem size:</strong> Casambi has 8M+ products vs. Silvair's ~1M devices. More luminaire manufacturers carry Casambi-ready products, giving specifiers more fixture choice.</li>
+        <li><strong>Commissioning UX:</strong> Casambi Pro (Windows + iPad) enables complete offline project configuration, floor plan uploads, drag-and-drop placement, and bulk configuration — all without internet.</li>
+        <li><strong>Consumer/Hospitality appeal:</strong> Casambi's animations, color palettes, gallery feature, gesture-based app, and circadian profiles are richer for design-focused applications.</li>
+        <li><strong>Pricing transparency:</strong> Casambi's free app lowers perceived cost-of-entry. Silvair's subscription model requires justification in proposals.</li>
+        <li><strong>Matter roadmap:</strong> Casambi is a CSA Matter alliance participant. Silvair's Matter positioning is unclear — relevant for residential-adjacent or smart home projects.</li>
+        <li><strong>Pre-commissioning / offsite planning:</strong> Casambi Pro allows most programming fully offline. Silvair's web portal requires internet. On job sites with poor connectivity, this is a real advantage for Casambi.</li>
+        <li><strong>DALI as a standalone wired solution:</strong> Casambi's Salvador Series enables a pure wired DALI system without any wireless component — a hybrid play Silvair doesn't match.</li>
+      </ol>
+    </section>
+
+    <!-- 12. Objections -->
+    <section class="section" id="s12">
+      <h2><span class="section-num">12</span>Key Sales Objections &amp; Responses</h2>
+      <div class="table-wrap">
+        <table class="obj-table">
+          <thead><tr><th>Objection</th><th>Response</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>"Casambi has way more products available."</td>
+              <td>True — but for commercial buildings requiring BMS integration, the BACnet gateway quality matters more than ecosystem size. Our TruBlu gateway is BTL-certified with 224 BACnet objects. Casambi's option is a third-party European accessory without BTL certification.</td>
+            </tr>
+            <tr>
+              <td>"Casambi has a BACnet gateway too — the Lithernet."</td>
+              <td>The Lithernet is made by a German company (Licht Manufaktur Berlin), not Casambi. It is not BTL-certified. It uses ASCII-based UDP packets — not a full BACnet device/object model with a PICS statement. Enterprise BMS integrators typically require BTL certification; ours has it, theirs doesn't.</td>
+            </tr>
+            <tr>
+              <td>"Casambi's app is free to download and easy to use."</td>
+              <td>For small projects that don't need BMS, Casambi's UX is excellent. For commercial facilities teams running a Siemens/Johnson/Tridium BMS dashboard, BTL-certified BACnet is the standard they require.</td>
+            </tr>
+            <tr>
+              <td>"Casambi is an open ecosystem."</td>
+              <td>Casambi uses a proprietary mesh protocol — every device must contain Casambi firmware. Our Silvair NLC platform uses a Bluetooth SIG-ratified open standard. Genuine interoperability requires an open standard, not an open brand.</td>
+            </tr>
+            <tr>
+              <td>"We've heard Casambi is more widely specified."</td>
+              <td>Casambi is popular in hospitality and residential. For DLC-rebate-eligible commercial buildings with BMS, Silvair/TruBlu has the certifications (BTL, DLC NLC5) that Casambi lacks.</td>
+            </tr>
+            <tr>
+              <td>"Does TruBlu work with DALI fixtures?"</td>
+              <td>Yes — we support DALI/D4i, and our BACnet gateway works alongside any DALI-based Silvair node in the same project.</td>
+            </tr>
+            <tr>
+              <td>"What happens if the cloud goes down?"</td>
+              <td>Nothing. Our BACnet gateway is fully on-premise with no cloud dependency. The mesh runs autonomously without internet.</td>
+            </tr>
+            <tr>
+              <td>"Casambi has better HVAC integration."</td>
+              <td>Silvair delivered the first qualified Bluetooth NLC HVAC integration profile — it's a Bluetooth SIG standard now, with occupancy-based thermostat setpoints through the same mesh as lighting. Casambi has no equivalent.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 13. Scorecard -->
+    <section class="section" id="s13">
+      <h2><span class="section-num">13</span>Summary Scorecard</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Silvair / TruBlu™</th><th>Casambi</th><th>Winner</th></tr></thead>
+          <tbody>
+            <tr><td>Bluetooth NLC open standard</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>BACnet / BMS integration</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>BTL certification</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="empty">☆☆☆☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span> <small style="color:var(--mid-gray)">Lithernet not BTL-certified</small></td>
+            </tr>
+            <tr><td>DLC NLC5 compliance</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>HVAC integration (NLC)</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="empty">☆☆☆☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>Emergency lighting (UL 924)</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>REST API maturity</td>
+              <td><span class="stars"><span class="filled">★★★★</span><span class="empty">☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="scorecard-winner sw-silvair">Silvair</span></td>
+            </tr>
+            <tr><td>Ecosystem / product choice</td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>Commissioning UX</td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>DALI / wired integration</td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>Human-centric / circadian lighting</td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>Animations / creative scenes</td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>Offline / no-cloud operation</td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-tie">Tie</span></td>
+            </tr>
+            <tr><td>Pricing transparency</td>
+              <td><span class="stars"><span class="filled">★★★</span><span class="empty">☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★★</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+            <tr><td>Matter roadmap</td>
+              <td><span class="stars"><span class="filled">★★</span><span class="empty">☆☆☆</span></span></td>
+              <td><span class="stars"><span class="filled">★★★★</span><span class="empty">☆</span></span></td>
+              <td><span class="scorecard-winner sw-casambi">Casambi</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:12px;">
+        <strong>Overall for commercial BMS projects:</strong> Silvair / TruBlu™ wins decisively.<br>
+        <strong>Overall for hospitality / retail / design-centric projects:</strong> Casambi wins.
+      </p>
+    </section>
+
+    <!-- 14. Positioning -->
+    <section class="section" id="s14">
+      <h2><span class="section-num">14</span>Recommended Positioning</h2>
+
+      <div class="pos-box win-box">
+        <h3>🏆 When TruBlu™ Wins — Lead With These Three Points</h3>
+        <ol>
+          <li><strong>BTL-certified BACnet gateway</strong> — the only BLE mesh platform with a BTL-certified, on-premise BACnet gateway with a full object model and PICS. Casambi's only BACnet option is a third-party, non-BTL-certified European accessory.</li>
+          <li><strong>Bluetooth NLC open standard</strong> — not a proprietary protocol. Backed by the Bluetooth SIG. Interoperable by design.</li>
+          <li><strong>DLC NLC5 listed products</strong> — eligible for energy rebates that Casambi products may not qualify for.</li>
+        </ol>
+        <p style="margin-top:10px;font-size:14px;">Add the HVAC story when applicable: <em>"We are the first vendor to deliver a qualified Bluetooth NLC HVAC integration — occupancy-based thermostat setpoints through the same mesh network that controls lighting."</em></p>
+      </div>
+
+      <div class="pos-box lose-box" style="margin-top:16px;">
+        <h3>⚖️ When You Might Lose to Casambi</h3>
+        <p style="font-size:14px;">Be realistic with the team. If the project is a boutique hotel, restaurant, museum, residential development without BMS, or a specifier-led project prioritizing UX and fixture freedom over standards — Casambi is a reasonable choice and fighting it will frustrate the customer.</p>
+        <p style="font-size:14px;margin-top:8px;">Consider proposing a hybrid: Silvair/TruBlu for BMS-connected zones, with honest acknowledgment of Casambi's strengths for non-BMS spaces.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── Footer ──────────────────────────────────────────── -->
+<footer class="site-footer">
+  <p><strong>mwConnect</strong> — Interoperability from top to bottom in wireless networked lighting controls.</p>
+  <p style="margin-top:8px;">
+    <a href="https://mwconnect.us" target="_blank" rel="noopener">mwconnect.us</a>
+    &nbsp;·&nbsp;
+    <a href="https://api.mwlink.us/docs" target="_blank" rel="noopener">mwLink API Docs</a>
+  </p>
+  <p style="margin-top:8px; color: #666;">Internal — Sales Reference &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; mwConnect and mwLink are trademarks of mwConnect.</p>
+</footer>
+
+<script>
+  // Highlight active TOC item on scroll
+  const sections = document.querySelectorAll('.section, #exec-summary');
+  const navLinks = document.querySelectorAll('.toc-sidebar nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.id;
+        const link = document.querySelector(`.toc-sidebar nav a[href="#${id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
